@@ -4,8 +4,8 @@ const request = require('supertest')
 const chai = require('chai')
 expect = chai.expect
 
-const User = mongoose.model('user')
-const Message = mongoose.model('message')
+const User = require('../src/models/user')
+const Message = require('../src/models/message')
 
 describe('the message_controller', () => {
     msg = new Message({
