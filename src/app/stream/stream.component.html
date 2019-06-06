@@ -1,0 +1,27 @@
+<div class="container row mt-5">
+  <div class=" col-md-4 mt-1">
+    <div class="card rightbox bg-house-color text-center">
+      <div class="card-header">
+        <h1 class="color-black">Streams</h1>
+      </div>
+      <div class="card-body">
+        <div class="stream-list-item row bg-sec-color mt-1" *ngFor="let stream of streams" (click)="addToActiveStreams(stream)">
+          <div class="col-md-4 menu-height">
+            <img
+              src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg"
+              class="fill">
+          </div>
+          <div class="col-md-6 menu-height">
+            <h4>{{stream.title}}</h4>
+          </div>
+          <div class="col-md-2 menu-height">
+            <button class="btn btn-warning" (click)="addToActiveStreams(stream)"></button>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+      </div>
+    </div>
+  </div>
+  .
+</div>
