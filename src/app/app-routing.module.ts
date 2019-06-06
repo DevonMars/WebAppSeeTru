@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {StreamsListComponent} from './streams/streams-list/streams-list.component';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './components/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent},
-  { path: 'home', component: StreamsListComponent },
-  { path: '**', component: StreamsListComponent }
+  
 ];
 
 @NgModule({
