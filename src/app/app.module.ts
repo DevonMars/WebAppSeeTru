@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { StreamsComponent } from './streams/streams.component';
 import { StreamsListComponent } from './streams/streams-list/streams-list.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { StreamsListComponent } from './streams/streams-list/streams-list.compon
     AppComponent,
     HeaderComponent,
     StreamsComponent,
-    StreamsListComponent
+    StreamsListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
