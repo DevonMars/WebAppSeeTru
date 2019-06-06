@@ -93,8 +93,8 @@ html {
     display: inline-block;
     text-transform: uppercase;
     font-size: 13px;
-    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    -webkit-box-shadow: 0 10px 30px 0 rgba(184, 31, 31, 0.589);
+    box-shadow: 0 10px 30px 0 rgba(184, 31, 31, 0.589);
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     margin: 5px 20px 40px 20px;
@@ -106,7 +106,7 @@ html {
   }
   
   input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-    background-color: #39ace7;
+    background-color: #971E1E;
   }
   
   input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -140,7 +140,7 @@ html {
   
   input[type=text]:focus {
     background-color: #fff;
-    border-bottom: 2px solid #E62C2D;
+    border-bottom: 2px solid #971E1E;
   }
   
   input[type=text]:placeholder {
@@ -238,7 +238,7 @@ html {
     bottom: -10px;
     width: 0;
     height: 2px;
-    background-color: #E62C2D;
+    background-color: #971E1E;
     content: "";
     transition: width 0.2s;
   }
