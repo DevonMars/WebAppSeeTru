@@ -1,5 +1,5 @@
 {
-  "name": "basicauthserver",
+  "name": "theCircle",
   "version": "1.0.0",
   "description": "Stub for a Mongo/Express server with auth",
   "main": "server.js",

@@ -3,7 +3,7 @@ var env = {
     dbPort: process.env.DB_PORT || '3000',
     dbUser: process.env.DB_USER || '',
     dbPassword: process.env.DB_PASSWORD || '',
-    dbDatabase: process.env.DB_DATABASE || 'authtestdb'
+    dbDatabase: process.env.DB_DATABASE || 'circle'
 }
 
 var dburl = process.env.NODE_ENV === 'production' ?
