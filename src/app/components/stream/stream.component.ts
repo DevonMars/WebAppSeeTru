@@ -34,4 +34,8 @@ export class StreamComponent implements OnInit {
     }
   }
 
+  removeStream(i: number) {
+    this.activeStreams.splice(i, 1);
+  }
+
 }

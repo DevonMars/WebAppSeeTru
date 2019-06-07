@@ -1,0 +1,24 @@
+<div *ngIf="stream" class="card mt-1">
+  <div class="card-header">
+    <div class="float-left">{{stream.title}}</div>
+  </div>
+  <div class="card-body">
+    <img src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg"
+      class="img-fluid">
+    <div class="scrollfield chatbox mt-1" style="height: 200px; width: 100%">
+      <div *ngFor="let message of messages">
+        <p><strong>{{message.author}} : </strong> {{message.message}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-11">
+        <input type="text" class="full-width float-left">
+      </div>
+      <div class="col-md-1">
+        <button class="btn btn-danger float-right">Send</button>
+      </div>
+    </div>
+  </div>
+</div>

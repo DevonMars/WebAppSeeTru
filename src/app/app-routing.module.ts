@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { StreamComponent } from './stream/stream.component';
+import { StreamComponent } from './components/stream/stream.component';
 
 const routes: Routes = [
   {
