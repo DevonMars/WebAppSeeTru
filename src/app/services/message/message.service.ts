@@ -13,7 +13,8 @@ export class MessageService {
   constructor(private socket: Socket) { }
 
   getMessages(userId: String) {
-    return this.socket.emit('getMsgs', userId);
+    this.socket.emit('getMsgs', userId);
+    return this.socket.fromEvent<any>('getMsgs');
   }
 
   // newMessage(message: Message) {

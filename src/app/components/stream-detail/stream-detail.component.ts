@@ -12,6 +12,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 export class StreamDetailComponent implements OnInit, OnDestroy {
   @Input() stream: Stream;
   messages = [];
+  initMessages = [];
   private _msgSub: Subscription;
 
   constructor(
@@ -26,10 +27,10 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
         this.messages = res
       }
     )//.unsubscribe();
-    // this._msgSub = this.msgService.messages.subscribe(msgs => {
-    //   console.log(msgs);
-    //   this.messages = msgs;
-    // });
+    this._msgSub = this.msgService.messages.subscribe(msgs => {
+      console.log(msgs);
+      this.messages = msgs;
+    });
   }
 
   ngOnDestroy() {
