@@ -11,6 +11,7 @@ export class StreamComponent implements OnInit {
   
   streams = []
   activeStreams = []
+  messages = []
 
   constructor(
     private _streamService : StreamService
