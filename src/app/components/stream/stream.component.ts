@@ -28,7 +28,7 @@ export class StreamComponent implements OnInit {
   addToActiveStreams(stream: any) {
     if (this.activeStreams.length <= 3) {
       this.activeStreams.push(stream)
-      console.log(this.activeStreams)
+      //console.log(this.activeStreams)
     } else {
       console.log('Too many streams open')
     }
