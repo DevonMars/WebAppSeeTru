@@ -147,6 +147,10 @@ html {
     color: #cccccc;
   }
   
+  input[type=password]:focus {
+    background-color: #fff;
+    border-bottom: 2px solid #E62C2D;
+  }
   
   
   /* ANIMATIONS */

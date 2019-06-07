@@ -1,6 +1,4 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="wrapper fadeInDown">
@@ -15,11 +13,25 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="Login" class="fadeIn second" name="Login" placeholder="Login">
-      <input type="text" id="Password" class="fadeIn third" name="Pogin" placeholder="Password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+    <!-- <form ngForm="loginForm" (submit)="onLogin(loginForm)" #loginForm="ngForm">
+      <input type="name" class="fadeIn second" ngModel name="name" placeholder="Login " #nameInput="ngModel" required name>
+      <input type="password" class="fadeIn third" ngModel name="password" placeholder="Password"  #passwordInput="ngModel">
+
+      <button type="submit" class="fadeIn fourth">Login In</button>
+    </form> -->
+
+    <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
+        <label>Name:</label>
+        <input type="text" name="name" ngModel>
+      
+        <label>password:</label>
+        <input type="password" name="password" ngModel>
+
+        <button type="submit">Submit</button>
     </form>
+
+
+
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
