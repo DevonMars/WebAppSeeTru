@@ -14,10 +14,10 @@
   <div class="card-footer">
     <div class="row">
       <div class="col-md-11">
-        <input type="text" class="full-width float-left">
+        <input type="text" [(ngModel)]="message" class="full-width float-left">
       </div>
       <div class="col-md-1">
-        <button class="btn btn-danger float-right">Send</button>
+        <button class="btn btn-danger float-right" (click)="send()">Send</button>
       </div>
     </div>
   </div>

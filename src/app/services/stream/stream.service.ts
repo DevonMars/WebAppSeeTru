@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Message } from 'src/app/models/message';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ export class StreamService {
   constructor(private http: HttpClient, private _router: Router) { }
 
   list() {
-    return this.http.get<any>(this._streamUrl + 'all')
+    return this.http.get<any>(this._streamUrl + 'all');
   }
 
   getMessages(hostId: String) {
-    return this.http.get<any>(this._messageUrl + hostId)
+    return this.http.get<any>(this._messageUrl + hostId);
   }
 
 }
