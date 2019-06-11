@@ -1,5 +1,5 @@
-
-    <div class="card mt-5 login-form text-center">
+   <div class="container">
+   <div class="card mt-5 login-form text-center">
         <div class="card-header">
           <h1 class="color-black">Log in as True You</h1>
         </div>
@@ -20,13 +20,14 @@
               <mat-error *ngIf="password.invalid">{{validatePassword()}}</mat-error>
             </mat-form-field>
             <br />
-            <button (click)="loginUser()" type="button" class="btn btn-turk float-right mt-2 mb-2">Log in</button>
+            <br>
+            <button (click)="loginUser()" type="button" class="btn btn-dark float-center mt-2 mb-2">Log in</button>
             <br />
             <label>{{submitResult}}</label>
           </form>
         </div>
-        <div class="card-footer">
+        <!-- <div class="card-footer">
           <button (click)="loginUser()" class="btn btn-danger"></button>
-        </div>
+        </div> -->
       </div>
-
+    </div>
