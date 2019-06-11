@@ -5,6 +5,14 @@ import { LoginComponent } from './components/authentication/login/login.componen
 
 const routes: Routes = [
   {
+    path:'',
+    component: LoginComponent
+  },
+  {
+    path:'*',
+    component: LoginComponent
+  },
+  {
     path:'stream',
     component: StreamComponent
   },
