@@ -3,6 +3,7 @@ import { Stream } from '../../models/stream';
 import { StreamService } from 'src/app/services/stream/stream.service';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message/message.service';
+import { Message } from 'src/app/models/message';
 
 @Component({
   selector: 'app-stream-detail',
@@ -13,6 +14,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   @Input() stream: Stream;
   messages = [];
   initMessages = [];
+  message: Message;
   private _msgSub: Subscription;
 
   constructor(
@@ -31,6 +33,10 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
       console.log(msgs);
       this.messages = msgs;
     });
+  }
+
+  sendMessage() {
+    this.msgService.newMessage(this.message);
   }
 
   ngOnDestroy() {

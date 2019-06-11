@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Socket } from 'ngx-socket-io';
 
-//import { Message } from '../../models/message';
+import { Message } from '../../models/message';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class MessageService {
     return this.socket.fromEvent<any>('getMsgs');
   }
 
-  // newMessage(message: Message) {
-  //   this.socket.emit('addMsg', message);
-  // }
+  newMessage(message: Message) {
+    this.socket.emit('addMsg', message);
+  }
 }
