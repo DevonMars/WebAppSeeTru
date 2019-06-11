@@ -3,6 +3,7 @@ import { Stream } from '../../models/stream';
 import { StreamService } from 'src/app/services/stream/stream.service';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message/message.service';
+import { StreamComponent } from '../stream/stream.component'
 
 @Component({
   selector: 'app-stream-detail',
@@ -30,7 +31,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
     //   console.log(msgs);
     //   this.messages = msgs;
     // });
-  }
+    }  
 
   ngOnDestroy() {
     this._msgSub.unsubscribe();
