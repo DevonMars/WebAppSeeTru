@@ -39,6 +39,12 @@ export class StreamComponent implements OnInit, OnDestroy {
 
   addToActiveStreams(stream: any) {
     if (this.activeStreams.length <= 3) {
+      for (let i of this.activeStreams) {
+        if (i == stream) {
+          console.log('You are already watching this stream')
+          return false;
+        }
+      };
       this.activeStreams.push(stream)
       //console.log(this.activeStreams)
     } else {
