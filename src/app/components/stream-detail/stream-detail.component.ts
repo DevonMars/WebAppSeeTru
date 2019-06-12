@@ -15,32 +15,20 @@ declare var $: any;
 export class StreamDetailComponent implements OnInit, OnDestroy {
   @Input() stream: Stream;
   messages = [];
-  // initMessages = [];
-  message: Message = {author: '', message: ''};
+  message: Message = { author: '', message: '' };
   messagetxt: String;
   private _msgSub: Subscription;
 
   constructor(
     private _streamService: StreamService,
     private msgService: MessageService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.getMessages();
     this._msgSub = this.msgService.messages.subscribe(msgs => {
       this.getMessages();
     });
-  }
-
-  sendMessage() {
-    this.message.message = this.messagetxt;
-    this.message.author = '5cff76b5b62f6c001787110b';
-    this.message.host = this.stream.host._id;
-    //console.log(this.message)
-    this.msgService.newMessage(this.message).subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    )
   }
 
   ngOnDestroy() {
@@ -54,6 +42,17 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
         this.messages = res
         $('#scrollbox').scrollTop($('#scrollbox').height);
       }
+    )
+  }
+
+  sendMessage() {
+    this.message.message = this.messagetxt;
+    this.message.author = '5cff76b5b62f6c001787110b';
+    this.message.host = this.stream.host._id;
+    //console.log(this.message)
+    this.msgService.newMessage(this.message).subscribe(
+      res => console.log(res),
+      err => console.log(err)
     )
   }
 }

@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MessageService {
   messages = this.socket.fromEvent<any>('messages');
+  viewers = this.socket.fromEvent<any>('viewers');
   private _msgUrl = "http://thecirclebackend.herokuapp.com/api/message/"
 
   constructor(private http: HttpClient, private socket: Socket) { }
@@ -23,4 +24,8 @@ export class MessageService {
     console.table(message)
     return this.http.post<any>(this._msgUrl, message);
   }
+
+  // getGlobalViewers() {
+  //   return this.socket.fromEvent<any>('viewers');
+  // }
 }

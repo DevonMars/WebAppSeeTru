@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StreamService } from '../../services/stream/stream.service';
+import { Subscription } from 'rxjs';
+import { MessageService } from 'src/app/services/message/message.service';
 
 @Component({
   selector: 'app-stream',
   templateUrl: './stream.component.html',
   styleUrls: ['./stream.component.styl']
 })
-export class StreamComponent implements OnInit {
+export class StreamComponent implements OnInit, OnDestroy {
   streams = [];
   activeStreams = [];
   messages = [];
+  private _viewSub: Subscription;
+  viewAmount: Number;
 
-  constructor(private _streamService: StreamService) { }
+  constructor(private _streamService: StreamService, private msgService: MessageService) { }
 
   ngOnInit() {
-    return this._streamService.list()
+    this._streamService.list()
       .subscribe(
         res => {
           this.streams = res
@@ -23,6 +27,14 @@ export class StreamComponent implements OnInit {
           console.log(err)
         }
       )
+    this.msgService.viewers.subscribe(amount => {
+      console.log('viewers: ', amount);
+      this.viewAmount = amount;
+    });
+  }
+
+  ngOnDestroy() {
+    this._viewSub.unsubscribe();
   }
 
   addToActiveStreams(stream: any) {
