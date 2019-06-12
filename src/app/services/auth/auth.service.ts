@@ -19,13 +19,15 @@ export class AuthService {
   }
 
   loginUser(user) {
-    localStorage.setItem('name', user.name)
+    console.log(user)
+    // sessionStorage.setItem('id', user._id) //hier moet een id komen
     return this.http.post<any>(this._loginUrl, user);
+    
   }
 
   logoutUser() {
     localStorage.removeItem('token')
-    this._router.navigate(['/home']);
+    this._router.navigate(['/login']);
   }
 
   loggedIn() {

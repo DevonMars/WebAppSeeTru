@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
       res => {
         console.log(res)
         localStorage.setItem('token', res.token)
+        localStorage.setItem('username', res.username)
+        localStorage.setItem('userId', res.userId)
         this._router.navigate(['/stream'])
       },
       err => {
