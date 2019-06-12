@@ -19,6 +19,7 @@ export class AuthService {
   }
 
   loginUser(user) {
+    localStorage.setItem('name', user.name)
     return this.http.post<any>(this._loginUrl, user);
   }
 

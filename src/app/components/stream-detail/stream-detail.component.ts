@@ -48,7 +48,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
 
   sendMessage() {
     this.message.message = this.messagetxt;
-    this.message.author = '5cff76b5b62f6c001787110b';
+    this.message.author = localStorage.getItem('name');
     this.message.host = this.stream.host._id;
     //console.log(this.message)
     this.msgService.newMessage(this.message).subscribe(
