@@ -13,6 +13,10 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path:'login',
+    component: LoginComponent
+  },
+  {
     path:'stream',
     component: StreamComponent
   },

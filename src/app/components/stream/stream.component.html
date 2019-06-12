@@ -6,12 +6,13 @@
       <div class="ml-4 card leftbox bg-house-color text-center">
         <div class="card-header">
           <h1 class="color-black">Streams</h1>
+          <p>Total viewers: {{viewAmount}}</p>
         </div>
         <div class="card-body scrollfield">
           <div class="stream-list-item row bg-sec-color mt-1" *ngFor="let stream of streams" (click)="addToActiveStreams(stream)">
             <div class="col-md-4 menu-height">
-              <img src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg"
-                class="fill">
+              <img src="{{stream.host.profilePicture}}" class="fill">
+              <!-- <img src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg" class="fill"> -->
             </div>
             <div class="col-md-8 menu-height">
               <h4>{{stream.title}}</h4>
