@@ -4,6 +4,7 @@ import { StreamService } from 'src/app/services/stream/stream.service';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message/message.service';
 import { Message } from 'src/app/models/message';
+declare var $: any;
 
 @Component({
   selector: 'app-stream-detail',
@@ -56,9 +57,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   }
 
   autoScroll() {
-    // var inner = document.getElementById('scrollbox-inner');
-    //   inner.scrollTop = inner.scrollHeight;
     $(".scrollfield.chatbox").stop().animate({ scrollTop: $(".scrollfield.chatbox")[0].scrollHeight}, 1000);
-
   }
+  
 }
