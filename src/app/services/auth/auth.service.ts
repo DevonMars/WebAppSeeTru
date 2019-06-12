@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private _registerUrl = environment.serverUrl + "/api/user/register";
-  private _loginUrl = environment.serverUrl + "/api/user/login";
+  private _registerUrl = environment.serverUrl + '/api/user/register';
+  private _loginUrl = environment.serverUrl + '/api/user/login';
 
   constructor(private http: HttpClient, private _router: Router) { }
 
@@ -22,16 +22,16 @@ export class AuthService {
   }
 
   logoutUser() {
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
     this._router.navigate(['/home']);
   }
 
   loggedIn() {
-    return !!localStorage.getItem('token')
+    return !!localStorage.getItem('token');
   }
 
   getToken() {
-    return localStorage.getItem('token')
+    return localStorage.getItem('token');
   }
 
 }

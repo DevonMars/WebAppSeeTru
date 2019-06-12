@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {SignService} from '../../../services/sign/sign.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginUserData : FormGroup;
   submitResult = ' ';
 
-  constructor(private _auth: AuthService, private _router: Router, private fb: FormBuilder) { }
+  constructor(private _auth: AuthService, private _router: Router, private fb: FormBuilder, private _sign: SignService) { }
 
   ngOnInit() {
     this.loginUserData = this.fb.group({
@@ -31,16 +32,22 @@ export class LoginComponent implements OnInit {
     this._auth.loginUser(this.loginUserData.value)
     .subscribe(
       res => {
-        console.log(res)
-        localStorage.setItem('token', res.token)
-        this._router.navigate(['/home'])
+        console.log(res);
+        localStorage.setItem('token', res.token);
+        this._router.navigate(['/home']);
         this.submitResult = 'Welkom bij Zippi Web-beheer';
+        if (this._auth.loggedIn) {
+          this._sign.createKeyPair();
+          this._router.navigate(['/chat']);
+        } else {
+          this._router.navigate(['/login']);
+        }
       },
       err => {
-        //this.submitResult = err.error.Error;
-        console.log(err)
+        // this.submitResult = err.error.Error;
+        console.log(err);
       }
-    )
+    );
   }
 
   get name() {
@@ -53,7 +60,6 @@ export class LoginComponent implements OnInit {
 
   validateName() {
     return this.name.hasError('required') ? 'Voer een naam in' : '';
-        
   }
 
   validatePassword() {

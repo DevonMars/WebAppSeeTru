@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { AppComponent } from './app.component';
 import { StreamComponent } from './components/stream/stream.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MatInputModule } from '@angular/material/';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,6 +22,8 @@ import { StreamDetailComponent } from './components/stream-detail/stream-detail.
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChatComponent } from './components/chat/chat.component';
+import { SignService } from './services/sign/sign.service';
 
 const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
 
@@ -31,7 +34,8 @@ const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', o
     NavbarComponent,
     StreamDetailComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -46,10 +50,9 @@ const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', o
     MatChipsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
-    
+    MatSelectModule,
   ],
-  providers: [StreamService, MessageService],
+  providers: [StreamService, MessageService, SignService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

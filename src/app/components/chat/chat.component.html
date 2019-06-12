@@ -1,0 +1,20 @@
+<div class="card mt-5 login-form text-left">
+  <h4>Messages</h4>
+  <div *ngIf="messages.length == 0; else hasMessages">
+    <p>No messages</p>
+  </div>
+  <ng-template #hasMessages>
+    <ul>
+      <li *ngFor="let msg of messages">
+        {{ msg.author }}: {{ msg.message }}
+      </li>
+    </ul>
+  </ng-template>
+  <form [formGroup]="chatForm" (ngSubmit)="onSubmit()">
+    <label>Message</label>
+    <input 
+      formControlName="message"
+      placeholder="Enter message"/>
+    <button type="submit">Send</button>
+  </form>
+</div>

@@ -1,25 +1,29 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { StreamComponent } from './components/stream/stream.component';
-import { LoginComponent } from './components/authentication/login/login.component'
+import { LoginComponent } from './components/authentication/login/login.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: LoginComponent
   },
   {
-    path:'*',
+    path: '*',
     component: LoginComponent
   },
   {
-    path:'stream',
+    path: 'stream',
     component: StreamComponent
   },
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent
-
+  },
+  {
+    path: 'chat',
+    component: ChatComponent
   }
 ];
 
