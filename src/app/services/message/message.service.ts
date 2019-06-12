@@ -20,7 +20,7 @@ export class MessageService {
   }
 
   newMessage(message: Message) {
-    console.table(message)
+    console.table(message);
     return this.http.post<any>(this._msgUrl, message);
   }
 }
