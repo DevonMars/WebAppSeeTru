@@ -45,8 +45,8 @@ export class StreamComponent implements OnInit, OnDestroy {
           return false;
         }
       };
+      
       this.activeStreams.push(stream)
-      //console.log(this.activeStreams)
     } else {
       console.log('Too many streams open')
     }

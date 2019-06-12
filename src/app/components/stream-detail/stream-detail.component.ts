@@ -5,9 +5,6 @@ import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message/message.service';
 import { Message } from 'src/app/models/message';
 
-declare var $: any;
-import { StreamComponent } from '../stream/stream.component'
-
 @Component({
   selector: 'app-stream-detail',
   templateUrl: './stream-detail.component.html',
@@ -27,7 +24,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getMessages();
-    this._msgSub = this.msgService.messages.subscribe(msgs => {
+    this._msgSub = this.msgService.messages.subscribe(() => {
       this.getMessages();
     });
   }
@@ -38,11 +35,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
 
   getMessages() {
     this._streamService.getMessages(this.stream.host._id).subscribe(
-      res => {
-        //console.table(res)
-        this.messages = res
-        $('#scrollbox').scrollTop($('#scrollbox').height);
-      }
+      res => this.messages = res 
     )
   }
 
@@ -50,7 +43,6 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
     this.message.message = this.messagetxt;
     this.message.author = '5cff76b5b62f6c001787110b';
     this.message.host = this.stream.host._id;
-    //console.log(this.message)
     this.msgService.newMessage(this.message).subscribe(
       res => console.log(res),
       err => console.log(err)
