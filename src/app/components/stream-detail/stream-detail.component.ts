@@ -16,14 +16,14 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   @Input() stream: Stream;
   messages = [];
   // initMessages = [];
-  message: Message = {author: '', message: ''};
+  message: Message = { author: '', message: '' };
   messagetxt: String;
   private _msgSub: Subscription;
 
   constructor(
     private _streamService: StreamService,
     private msgService: MessageService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.getMessages();
@@ -50,10 +50,15 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   getMessages() {
     this._streamService.getMessages(this.stream.host._id).subscribe(
       res => {
-        //console.table(res)
         this.messages = res
-        $('#scrollbox').scrollTop($('#scrollbox').height);
+        this.autoScroll();
       }
     )
+  }
+
+  autoScroll() {
+    // var inner = document.getElementById('scrollbox-inner');
+    //   inner.scrollTop = inner.scrollHeight;
+    $(".scrollfield.chatbox").stop().animate({ scrollTop: $(".scrollfield.chatbox")[0].scrollHeight}, 1000);
   }
 }
