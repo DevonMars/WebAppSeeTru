@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { StreamService } from './services/stream/stream.service';
 import { MessageService } from './services/message/message.service';
 import { StreamDetailComponent } from './components/stream-detail/stream-detail.component';
+import { LoginComponent } from './components/authentication/login/login.component';
 
 const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
 //const config: SocketIoConfig = { url: 'localhost:5000', options: {} };
@@ -21,7 +22,8 @@ const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', o
     AppComponent,
     StreamComponent,
     NavbarComponent,
-    StreamDetailComponent
+    StreamDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
