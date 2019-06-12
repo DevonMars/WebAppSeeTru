@@ -6,7 +6,7 @@
     <img src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg"
       class="img-fluid">
     <div class="scrollfield chatbox mt-1" style="height: 200px; width: 100%">
-      <div *ngFor="let message of messages">
+      <div *ngFor="let message of messages" (change)="scrollDown()">
         <p><strong>{{message.author}} : </strong> {{message.message}}</p>
       </div>
     </div>
@@ -14,10 +14,10 @@
   <div class="card-footer">
     <div class="row">
       <div class="col-md-11">
-        <input type="text" [(ngModel)]="message" class="full-width float-left">
+        <input type="text" [(ngModel)]="messagetxt" class="full-width float-left">
       </div>
       <div class="col-md-1">
-        <button class="btn btn-danger float-right" (click)="send()">Send</button>
+        <button class="btn btn-danger float-right" (click)="sendMessage()">Send</button>
       </div>
     </div>
   </div>
