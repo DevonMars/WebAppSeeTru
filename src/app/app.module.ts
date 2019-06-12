@@ -40,10 +40,7 @@ const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', o
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
-<<<<<<< HEAD
     FormsModule,
-    SocketIoModule.forRoot(config)
-=======
     SocketIoModule.forRoot(config),
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -54,7 +51,6 @@ const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', o
     MatInputModule,
     MatSelectModule
     
->>>>>>> ae9da0e62263ebcb1921e69abb08ceb6994ab09b
   ],
   providers: [StreamService, MessageService],
   bootstrap: [AppComponent]

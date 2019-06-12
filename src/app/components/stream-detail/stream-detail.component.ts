@@ -3,13 +3,10 @@ import { Stream } from '../../models/stream';
 import { StreamService } from 'src/app/services/stream/stream.service';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message/message.service';
-<<<<<<< HEAD
 import { Message } from 'src/app/models/message';
 
 declare var $: any;
-=======
 import { StreamComponent } from '../stream/stream.component'
->>>>>>> ae9da0e62263ebcb1921e69abb08ceb6994ab09b
 
 @Component({
   selector: 'app-stream-detail',
@@ -30,7 +27,6 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit() {
-<<<<<<< HEAD
     this.getMessages();
     this._msgSub = this.msgService.messages.subscribe(msgs => {
       this.getMessages();
@@ -47,19 +43,6 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
       err => console.log(err)
     )
   }
-=======
-    this._streamService.getMessages(this.stream.host._id).subscribe(
-      res => {
-        console.log(res)
-        this.messages = res
-      }
-    )//.unsubscribe();
-    // this._msgSub = this.msgService.messages.subscribe(msgs => {
-    //   console.log(msgs);
-    //   this.messages = msgs;
-    // });
-    }  
->>>>>>> ae9da0e62263ebcb1921e69abb08ceb6994ab09b
 
   ngOnDestroy() {
     this._msgSub.unsubscribe();
