@@ -6,6 +6,7 @@
       <div class="ml-4 card leftbox bg-house-color text-center">
         <div class="card-header">
           <h1 class="color-black">Streams</h1>
+          <p>Total viewers: {{viewAmount}}</p>
         </div>
         <div class="card-body scrollfield">
           <div class="stream-list-item row bg-sec-color mt-1" *ngFor="let stream of streams" (click)="addToActiveStreams(stream)">
