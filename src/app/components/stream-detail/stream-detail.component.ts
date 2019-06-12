@@ -42,7 +42,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
         this.autoScroll();
       }
     )
-  }
+}
 
   sendMessage() {
     this.message.message = this.messagetxt;
@@ -54,6 +54,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
       res => console.log(res),
       err => console.log(err)
     )
+    this.autoScroll();
   }
 
   autoScroll() {
