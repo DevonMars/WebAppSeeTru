@@ -6,6 +6,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 import { Message } from 'src/app/models/message';
 
 declare var $: any;
+import { StreamComponent } from '../stream/stream.component'
 
 @Component({
   selector: 'app-stream-detail',
