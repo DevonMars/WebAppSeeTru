@@ -33,8 +33,9 @@ export class LoginComponent implements OnInit {
       res => {
         console.log(res)
         localStorage.setItem('token', res.token)
-        this._router.navigate(['/home'])
-        this.submitResult = 'Welkom bij Zippi Web-beheer';
+        localStorage.setItem('username', res.username)
+        localStorage.setItem('userId', res.userId)
+        this._router.navigate(['/stream'])
       },
       err => {
         //this.submitResult = err.error.Error;

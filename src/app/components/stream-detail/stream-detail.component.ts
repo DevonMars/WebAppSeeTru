@@ -13,7 +13,8 @@ import { Message } from 'src/app/models/message';
 export class StreamDetailComponent implements OnInit, OnDestroy {
   @Input() stream: Stream;
   messages = [];
-  message: Message = { author: '', message: '' };
+  // initMessages = [];
+  message: Message = { authorname: '', author: '', message: '' };
   messagetxt: String;
   private _msgSub: Subscription;
 
@@ -35,17 +36,29 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
 
   getMessages() {
     this._streamService.getMessages(this.stream.host._id).subscribe(
-      res => this.messages = res 
+      res => {
+        this.messages = res
+        this.autoScroll();
+      }
     )
   }
 
   sendMessage() {
     this.message.message = this.messagetxt;
-    this.message.author = '5cff76b5b62f6c001787110b';
+    this.message.authorname = localStorage.getItem('username')
+    this.message.author = localStorage.getItem('userId');
     this.message.host = this.stream.host._id;
+    console.log(this.message)
     this.msgService.newMessage(this.message).subscribe(
       res => console.log(res),
       err => console.log(err)
     )
+  }
+
+  autoScroll() {
+    // var inner = document.getElementById('scrollbox-inner');
+    //   inner.scrollTop = inner.scrollHeight;
+    $(".scrollfield.chatbox").stop().animate({ scrollTop: $(".scrollfield.chatbox")[0].scrollHeight}, 1000);
+
   }
 }
