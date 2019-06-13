@@ -22,6 +22,7 @@ import { StreamDetailComponent } from './components/stream-detail/stream-detail.
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './services/auth/auth-guard';
 
 const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
 //const config: SocketIoConfig = { url: 'localhost:5000', options: {} };
@@ -52,7 +53,7 @@ const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', o
     MatSelectModule
     
   ],
-  providers: [StreamService, MessageService],
+  providers: [StreamService, MessageService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

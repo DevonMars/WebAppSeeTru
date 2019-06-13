@@ -7,11 +7,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  
-
   private _registerUrl = environment.serverUrl + "/api/user/register";
   private _loginUrl = environment.serverUrl + "/api/user/login";
-
+  
   constructor(private http: HttpClient, private _router: Router) { }
 
   registerUser(user) {
@@ -19,7 +17,7 @@ export class AuthService {
   }
 
   loginUser(user) {
-    console.log(user)
+    console.log(user);
     // sessionStorage.setItem('id', user._id) //hier moet een id komen
     return this.http.post<any>(this._loginUrl, user);
     
@@ -37,5 +35,7 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token')
   }
+
+  
 
 }

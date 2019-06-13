@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res.token)
         localStorage.setItem('username', res.username)
         localStorage.setItem('userId', res.userId)
-        this._router.navigate(['/stream'])
+        this._router.navigate(['/'])
       },
       err => {
         //this.submitResult = err.error.Error;
