@@ -51,7 +51,10 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
     this.message.host = this.stream.host._id;
     console.log(this.message)
     this.msgService.newMessage(this.message).subscribe(
-      res => console.log(res),
+      res => {
+        this.messagetxt = ''
+        console.log(res)
+      },
       err => console.log(err)
     )
     this.autoScroll();
