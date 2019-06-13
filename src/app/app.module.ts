@@ -25,8 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { SignService } from './services/sign/sign.service';
 
-const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
-//  const config: SocketIoConfig = { url: 'localhost:5000', options: {} };
+// const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
+ const config: SocketIoConfig = { url: 'localhost:5000', options: {} };
 
 @NgModule({
   declarations: [
