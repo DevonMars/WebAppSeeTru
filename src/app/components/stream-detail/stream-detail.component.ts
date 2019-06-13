@@ -4,7 +4,6 @@ import { StreamService } from 'src/app/services/stream/stream.service';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message/message.service';
 import { Message } from 'src/app/models/message';
-
 declare var $: any;
 import { StreamComponent } from '../stream/stream.component'
 import { SignService } from 'src/app/services/sign/sign.service';
@@ -17,7 +16,6 @@ import { SignService } from 'src/app/services/sign/sign.service';
 export class StreamDetailComponent implements OnInit, OnDestroy {
   @Input() stream: Stream;
   messages = [];
-  // initMessages = [];
   message: Message = { authorname: '', author: '', message: '', signature: '', certificate: this._sign.certificate};
   messagetxt: String;
   private _msgSub: Subscription;
@@ -30,7 +28,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getMessages();
-    this._msgSub = this.msgService.messages.subscribe(msgs => {
+    this._msgSub = this.msgService.messages.subscribe(() => {
       this.getMessages();
     });
   }
@@ -56,15 +54,16 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
     const signature = this._sign.signMessage(this.messagetxt);
     this.message.signature = signature.signature;
     this.msgService.newMessage(this.message).subscribe(
-      res => console.log(res),
+      res => {
+        this.messagetxt = '';
+        console.log(res);
+      },
       err => console.log(err)
     );
   }
 
   autoScroll() {
-    // var inner = document.getElementById('scrollbox-inner');
-    //   inner.scrollTop = inner.scrollHeight;
-    $('.scrollfield.chatbox').stop().animate({ scrollTop: $('.scrollfield.chatbox')[0].scrollHeight}, 1000);
-
+    $(".scrollfield.chatbox").stop().animate({ scrollTop: $(".scrollfield.chatbox")[0].scrollHeight}, 1000);
   }
+
 }

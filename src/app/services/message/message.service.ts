@@ -22,11 +22,25 @@ export class MessageService {
   }
 
   newMessage(message: Message) {
-    console.table(message);
+    //console.table(message)
     return this.http.post<any>(this._msgUrl, message);
   }
 
-  // getGlobalViewers() {
-  //   return this.socket.fromEvent<any>('viewers');
-  // }
+  startWatching(userIds: any) {
+    //console.log(userIds)
+    this.socket.emit('startWatching', userIds, function (data) {
+      console.log(data);
+    })
+  }
+
+  stopWatching(userIds: any) {
+    console.log(userIds)
+    this.socket.emit('stopWatching', userIds, function (data) {
+      console.log(data);
+    })
+  }
+
+  getViewcount(hostId: any) {
+    this.socket.emit('getViewcount', hostId)
+  }
 }
