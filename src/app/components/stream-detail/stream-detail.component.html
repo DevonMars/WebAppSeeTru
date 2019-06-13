@@ -6,7 +6,8 @@
   <div class="card-body">
     <img src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg"
       class="img-fluid">
-    <div class="scrollfield chatbox mt-1" id="scrollbox-inner">
+      <hr>
+    <div class="scrollbar scrollbar-primary chatbox mt-1" id="scrollbox-inner">
       <div *ngFor="let message of messages" (change)="scrollDown()">
         <p><strong>{{message.authorname}} : </strong> {{message.message}}</p>
       </div>
