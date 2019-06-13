@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    console.log(this.loginUserData);
     this._auth.loginUser(this.loginUserData.value)
     .subscribe(
       res => {
@@ -55,6 +54,24 @@ export class LoginComponent implements OnInit {
       },
       err => {
         // this.submitResult = err.error.Error;
+        console.log(err);
+      }
+    );
+  }
+
+  loginUserDev() {
+    this._auth.loginUser({name: 'qwe', password: 'qwe'})
+    .subscribe(
+      res => {
+        this._sign.public_key = res.public;
+        this._sign.private_key = res.private;
+        this._sign.certificate = res.cert;
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('username', res.username);
+        localStorage.setItem('userId', res.userId);
+        this._router.navigate(['/stream']);
+      },
+      err => {
         console.log(err);
       }
     );
