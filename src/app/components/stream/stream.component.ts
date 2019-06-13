@@ -34,9 +34,6 @@ export class StreamComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._viewSub.unsubscribe();
-    // for (let i = 0; i < this.activeStreams.length; i++) {
-    //   this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id })
-    // }
   }
 
   addToActiveStreams(stream: any) {
@@ -55,7 +52,7 @@ export class StreamComponent implements OnInit, OnDestroy {
   }
 
   removeStream(i: number) {
-    //this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id })
+    this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id })
     this.activeStreams.splice(i, 1);
   }
 

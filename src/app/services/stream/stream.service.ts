@@ -22,4 +22,8 @@ export class StreamService {
     return this.http.get<any>(this._messageUrl + hostId);
   }
 
+  getViewCount(hostId: String) {
+    return this.http.get<any>(this._streamUrl + hostId + '/viewers')
+  }
+
 }

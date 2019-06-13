@@ -16,9 +16,11 @@ import { SignService } from 'src/app/services/sign/sign.service';
 export class StreamDetailComponent implements OnInit, OnDestroy {
   @Input() stream: Stream;
   messages = [];
+  viewers: Number;
   message: Message = { authorname: '', author: '', message: '', signature: '', certificate: this._sign.certificate};
   messagetxt: String;
   private _msgSub: Subscription;
+  private _viewSub: Subscription;
 
   constructor(
     private _streamService: StreamService,
@@ -31,6 +33,9 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
     this._msgSub = this.msgService.messages.subscribe(() => {
       this.getMessages();
     });
+    this._viewSub = this.msgService.viewSingle.subscribe(() => {
+      this.getViewers();
+    })
   }
 
   ngOnDestroy() {
@@ -42,6 +47,14 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
       res => {
         this.messages = res;
         this.autoScroll();
+      }
+    );
+  }
+
+  getViewers() {
+    this._streamService.getViewCount(this.stream._id).subscribe(
+      res => {
+        this.viewers = res.viewers;
       }
     );
   }
