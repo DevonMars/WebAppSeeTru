@@ -60,6 +60,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
       },
       err => console.log(err)
     );
+    this.autoScroll();
   }
 
   autoScroll() {
