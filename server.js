@@ -8,7 +8,7 @@ const cors = require('cors');
 app.use(cors());
 app.use(compression());
 
-const appname = 'The Circle';
+const appname = 'Stylus';
 
 app.use(express.static(path.join(__dirname, 'dist', appname)));
 
