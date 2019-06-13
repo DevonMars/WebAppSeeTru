@@ -9,14 +9,16 @@
           <p>Total viewers: {{viewAmount}}</p>
         </div>
         <div class="card-body scrollfield">
-          <div class="stream-list-item row bg-sec-color mt-1" *ngFor="let stream of streams" (click)="addToActiveStreams(stream)">
-            <div class="col-md-4 menu-height">
-              <img src="{{stream.host.profilePicture}}" class="fill">
-              <!-- <img src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg" class="fill"> -->
-            </div>
-            <div class="col-md-8 menu-height">
-              <h4>{{stream.title}}</h4>
-              <h4>Host: {{stream.host.name}}</h4>
+          <div *ngFor="let stream of streams">
+            <div class="stream-list-item row bg-sec-color mt-1" (click)="addToActiveStreams(stream)" *ngIf="stream.active">
+              <div class="col-md-4 menu-height">
+                <img src="{{stream.host.profilePicture}}" class="fill">
+                <!-- <img src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg" class="fill"> -->
+              </div>
+              <div class="col-md-8 menu-height">
+                <h4>{{stream.title}}</h4>
+                <h4>Host: {{stream.host.name}}</h4>
+              </div>
             </div>
           </div>
         </div>
