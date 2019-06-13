@@ -26,8 +26,8 @@ import { AuthGuard } from './services/auth/auth-guard';
 
 import { SignService } from './services/sign/sign.service';
 
-// const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
- const config: SocketIoConfig = { url: 'localhost:5000', options: {} };
+const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
+//  const config: SocketIoConfig = { url: 'localhost:5000', options: {} };
 
 @NgModule({
   declarations: [
