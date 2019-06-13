@@ -6,14 +6,12 @@
        <div class="card-body">
          <form [formGroup]="loginUserData">
            <hr />
-           <label for="">Gebruikersnaam</label>
            <br />
            <mat-form-field appearance="outline" class="full-width">
              <input matInput placeholder="Gebruikersnaam" formControlName="name" class="text-center string-box">
              <mat-error *ngIf="name.invalid">{{validateName()}}</mat-error>
            </mat-form-field>
            <br />
-           <label class="mt-4" for="">Wachtwoord</label>
            <br />
            <mat-form-field appearance="outline" class="full-width">
              <input matInput placeholder="Wachtwoord" formControlName="password" class="text-center string-box" type="password">
@@ -26,9 +24,6 @@
            <label>{{submitResult}}</label>
          </form>
        </div>
-       <!-- <div class="card-footer">
-         <button (click)="loginUser()" class="btn btn-danger"></button>
-       </div> -->
      </div>
    </div>
 
