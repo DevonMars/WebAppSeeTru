@@ -22,6 +22,7 @@ import { StreamDetailComponent } from './components/stream-detail/stream-detail.
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './services/auth/auth-guard';
 
 import { SignService } from './services/sign/sign.service';
 
@@ -54,7 +55,7 @@ import { SignService } from './services/sign/sign.service';
     MatSelectModule
 
   ],
-  providers: [StreamService, MessageService, SignService],
+  providers: [StreamService, MessageService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
