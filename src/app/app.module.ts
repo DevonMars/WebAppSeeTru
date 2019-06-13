@@ -23,8 +23,10 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { SignService } from './services/sign/sign.service';
+
 const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
-//const config: SocketIoConfig = { url: 'localhost:5000', options: {} };
+//  const config: SocketIoConfig = { url: 'localhost:5000', options: {} };
 
 @NgModule({
   declarations: [
@@ -50,9 +52,9 @@ const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', o
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule
-    
+
   ],
-  providers: [StreamService, MessageService],
+  providers: [StreamService, MessageService, SignService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

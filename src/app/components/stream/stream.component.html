@@ -26,7 +26,7 @@
     </div>
     <div class="col-md-8 mt-5 row">
       <div class="col-md-6" *ngFor="let activeStream of activeStreams; let i = index;">
-        
+        <div class="float-right"><button (click)="removeStream(i)">X</button></div>
         <app-stream-detail [stream]="activeStream"></app-stream-detail>
       </div>
     </div>

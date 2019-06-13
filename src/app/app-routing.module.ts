@@ -19,11 +19,6 @@ const routes: Routes = [
   {
     path:'stream',
     component: StreamComponent
-  },
-  {
-    path:'login',
-    component: LoginComponent
-
   }
 ];
 
