@@ -3,4 +3,6 @@ export class Message {
     author: String;
     message: String;
     host?: String;
+    signature: String;
+    certificate: String;
 }

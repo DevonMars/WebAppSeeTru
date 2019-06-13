@@ -47,7 +47,7 @@ export class StreamComponent implements OnInit, OnDestroy {
           return false;
         }
       };
-     // this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
+     this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
       this.activeStreams.push(stream)
     } else {
       console.log('Too many streams open')

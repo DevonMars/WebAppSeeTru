@@ -11,7 +11,8 @@ import { HttpClient } from '@angular/common/http';
 export class MessageService {
   messages = this.socket.fromEvent<any>('messages');
   viewers = this.socket.fromEvent<any>('viewers');
-  private _msgUrl = "http://thecirclebackend.herokuapp.com/api/message/"
+  private _msgUrl = 'http://thecirclebackend.herokuapp.com/api/message/';
+  // private _msgUrl = 'http://localhost:5000/api/message';
 
   constructor(private http: HttpClient, private socket: Socket) { }
 

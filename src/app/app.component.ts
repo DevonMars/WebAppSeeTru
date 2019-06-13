@@ -7,7 +7,7 @@ import { StreamService } from './services/stream/stream.service';
   styleUrls: ['./app.component.styl']
 })
 export class AppComponent {
-  title = 'Stylus';
+  title = 'The Circle';
 
 
 }
