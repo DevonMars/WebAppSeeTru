@@ -28,13 +28,15 @@ export class StreamComponent implements OnInit, OnDestroy {
         }
       )
     this.msgService.viewers.subscribe(amount => {
-      console.log('viewers: ', amount);
       this.viewAmount = amount;
     });
   }
 
   ngOnDestroy() {
     this._viewSub.unsubscribe();
+    // for (let i = 0; i < this.activeStreams.length; i++) {
+    //   this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id })
+    // }
   }
 
   addToActiveStreams(stream: any) {
@@ -45,7 +47,7 @@ export class StreamComponent implements OnInit, OnDestroy {
           return false;
         }
       };
-      
+     this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
       this.activeStreams.push(stream)
     } else {
       console.log('Too many streams open')
@@ -53,6 +55,7 @@ export class StreamComponent implements OnInit, OnDestroy {
   }
 
   removeStream(i: number) {
+    //this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id })
     this.activeStreams.splice(i, 1);
   }
 

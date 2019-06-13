@@ -13,6 +13,10 @@ const routes: Routes = [
     path:'login',
     component: LoginComponent
   },
+  {
+    path:'stream',
+    component: StreamComponent
+  }
 ];
 
 @NgModule({

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SignService } from 'src/app/services/sign/sign.service';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  loginUserData : FormGroup;
+  loginUserData: FormGroup;
   submitResult = ' ';
 
-  constructor(private _auth: AuthService, private _router: Router, private fb: FormBuilder) { }
+  constructor(private _auth: AuthService,
+              private _router: Router,
+              private fb: FormBuilder,
+              private _sign: SignService) { }
 
   ngOnInit() {
     this.loginUserData = this.fb.group({
@@ -23,7 +27,7 @@ export class LoginComponent implements OnInit {
       password: [ '', [
         Validators.required
       ]]
-    })
+    });
   }
 
   loginUser() {
@@ -31,17 +35,29 @@ export class LoginComponent implements OnInit {
     this._auth.loginUser(this.loginUserData.value)
     .subscribe(
       res => {
-        console.log(res)
-        localStorage.setItem('token', res.token)
-        localStorage.setItem('username', res.username)
-        localStorage.setItem('userId', res.userId)
-        this._router.navigate(['/'])
+        // console.log(res);
+        this._sign.public_key = res.public;
+        this._sign.private_key = res.private;
+        this._sign.certificate = res.cert;
+        // console.log({
+        //   pub: this._sign.public_key,
+        //   priv: this._sign.private_key,
+        //   cert: this._sign.certificate
+        // });
+        // const signature = this._sign.signMessage('test');
+        // const verification = this._sign.verifySignature(signature);
+        // // const encoded = this._sign.encodeToBase64(signature);
+        // console.log(verification);
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('username', res.username);
+        localStorage.setItem('userId', res.userId);
+        this._router.navigate(['/stream']);
       },
       err => {
-        //this.submitResult = err.error.Error;
-        console.log(err)
+        // this.submitResult = err.error.Error;
+        console.log(err);
       }
-    )
+    );
   }
 
   get name() {
@@ -54,7 +70,6 @@ export class LoginComponent implements OnInit {
 
   validateName() {
     return this.name.hasError('required') ? 'Voer een naam in' : '';
-        
   }
 
   validatePassword() {
