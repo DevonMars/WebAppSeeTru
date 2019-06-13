@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message/message.service';
 import { Message } from 'src/app/models/message';
 declare var $: any;
-import { StreamComponent } from '../stream/stream.component'
+import { StreamComponent } from '../stream/stream.component';
 import { SignService } from 'src/app/services/sign/sign.service';
 
 @Component({
@@ -18,7 +18,9 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   messages = [];
   message: Message = { authorname: '', author: '', message: '', signature: '', certificate: this._sign.certificate};
   messagetxt: String;
+  streamViews: Number;
   private _msgSub: Subscription;
+  private _strmSub: Subscription;
 
   constructor(
     private _streamService: StreamService,
@@ -31,13 +33,28 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
     this._msgSub = this.msgService.messages.subscribe(() => {
       this.getMessages();
     });
+    this.getViewers();
+    this._strmSub = this.msgService.streamViews.subscribe(amount => {
+      console.log({
+        stream: this.stream.title,
+        amount: amount
+      });
+      this.streamViews = amount;
+    });
   }
 
   ngOnDestroy() {
     this._msgSub.unsubscribe();
+    this._strmSub.unsubscribe();
+  }
+
+  getViewers() {
+    console.log('GET viewers from ' + this.stream.title);
+    this.msgService.getViewcount(this.stream.host._id);
   }
 
   getMessages() {
+    console.log('GET messages ' +  this.stream.title);
     this._streamService.getMessages(this.stream.host._id).subscribe(
       res => {
         this.messages = res;

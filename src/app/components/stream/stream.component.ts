@@ -28,6 +28,7 @@ export class StreamComponent implements OnInit, OnDestroy {
         }
       )
     this.msgService.viewers.subscribe(amount => {
+      console.log('ALL STREAM VIEWS');
       this.viewAmount = amount;
     });
   }
