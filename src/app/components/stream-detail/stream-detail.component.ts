@@ -14,7 +14,6 @@ declare var $: any;
 export class StreamDetailComponent implements OnInit, OnDestroy {
   @Input() stream: Stream;
   messages = [];
-  // initMessages = [];
   message: Message = { authorname: '', author: '', message: '' };
   messagetxt: String;
   private _msgSub: Subscription;
@@ -46,14 +45,14 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
 
   sendMessage() {
     this.message.message = this.messagetxt;
-    this.message.authorname = localStorage.getItem('username')
+    this.message.authorname = localStorage.getItem('username');
     this.message.author = localStorage.getItem('userId');
     this.message.host = this.stream.host._id;
     //console.log(this.message)
     this.msgService.newMessage(this.message).subscribe(
       res => {
-        this.messagetxt = ''
-        console.log(res)
+        this.messagetxt = '';
+        console.log(res);
       },
       err => console.log(err)
     )
@@ -63,5 +62,5 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   autoScroll() {
     $(".scrollfield.chatbox").stop().animate({ scrollTop: $(".scrollfield.chatbox")[0].scrollHeight}, 1000);
   }
-  
+
 }
