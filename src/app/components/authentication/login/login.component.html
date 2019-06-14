@@ -1,32 +1,38 @@
+<div class="container">
+  <div class="card mt-5 login-form text-center">
+       <div class="card-header">
+         <h1 class="color-black">Log in as True You</h1>
+       </div>
+       <div class="card-body">
+         <form [formGroup]="loginUserData">
+           <hr />
+           <label for="">Gebruikersnaam</label>
+           <br />
+           <mat-form-field appearance="outline" class="full-width">
+             <input matInput placeholder="Gebruikersnaam" formControlName="name" class="text-center string-box">
+             <mat-error *ngIf="name.invalid">{{validateName()}}</mat-error>
+           </mat-form-field>
+           <br />
+           <label class="mt-4" for="">Wachtwoord</label>
+           <br />
+           <mat-form-field appearance="outline" class="full-width">
+             <input matInput placeholder="Wachtwoord" formControlName="password" class="text-center string-box" type="password">
+             <mat-error *ngIf="password.invalid">{{validatePassword()}}</mat-error>
+           </mat-form-field>
+           <br />
+           <br>
+           <button (click)="loginUser()" type="button" class="btn btn-dark float-center mt-2 mb-2">Log in</button>
+           <br />
+           <button (click)="loginUserDev()" type="button" class="btn btn-dark float-center mt-2 mb-2">QWE shortcut</button>
+           <br>
+           <label>{{submitResult}}</label>
+         </form>
+       </div>
+       <!-- <div class="card-footer">
+         <button (click)="loginUser()" class="btn btn-danger"></button>
+       </div> -->
+     </div>
+   </div>
 
-    <div class="card mt-5 login-form text-center">
-        <div class="card-header">
-          <h1 class="color-black">Log in as True You</h1>
-        </div>
-        <div class="card-body">
-          <form [formGroup]="loginUserData">
-            <hr />
-            <label for="">Gebruikersnaam</label>
-            <br />
-            <mat-form-field appearance="outline" class="full-width">
-              <input matInput placeholder="Gebruikersnaam" formControlName="name" class="text-center string-box">
-              <mat-error *ngIf="name.invalid">{{validateName()}}</mat-error>
-            </mat-form-field>
-            <br />
-            <label class="mt-4" for="">Wachtwoord</label>
-            <br />
-            <mat-form-field appearance="outline" class="full-width">
-              <input matInput placeholder="Wachtwoord" formControlName="password" class="text-center string-box" type="password">
-              <mat-error *ngIf="password.invalid">{{validatePassword()}}</mat-error>
-            </mat-form-field>
-            <br />
-            <button (click)="loginUser()" type="button" class="btn btn-turk float-right mt-2 mb-2">Log in</button>
-            <br />
-            <label>{{submitResult}}</label>
-          </form>
-        </div>
-        <div class="card-footer">
-          <button (click)="loginUser()" class="btn btn-danger"></button>
-        </div>
-      </div>
 
+  

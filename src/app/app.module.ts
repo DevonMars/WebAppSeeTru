@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { StreamComponent } from './components/stream/stream.component';
@@ -22,10 +23,12 @@ import { StreamDetailComponent } from './components/stream-detail/stream-detail.
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ChatComponent } from './components/chat/chat.component';
+import { AuthGuard } from './services/auth/auth-guard';
+
 import { SignService } from './services/sign/sign.service';
 
 const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
+//  const config: SocketIoConfig = { url: 'localhost:5000', options: {} };
 
 @NgModule({
   declarations: [
@@ -42,6 +45,7 @@ const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', o
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     SocketIoModule.forRoot(config),
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -50,9 +54,10 @@ const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', o
     MatChipsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule,
+    MatSelectModule
+
   ],
-  providers: [StreamService, MessageService, SignService],
+  providers: [StreamService, MessageService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

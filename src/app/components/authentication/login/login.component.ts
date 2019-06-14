@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {SignService} from '../../../services/sign/sign.service';
+import { SignService } from 'src/app/services/sign/sign.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +11,13 @@ import {SignService} from '../../../services/sign/sign.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginUserData : FormGroup;
+  loginUserData: FormGroup;
   submitResult = ' ';
 
-  constructor(private _auth: AuthService, private _router: Router, private fb: FormBuilder, private _sign: SignService) { }
+  constructor(private _auth: AuthService,
+              private _router: Router,
+              private fb: FormBuilder,
+              private _sign: SignService) { }
 
   ngOnInit() {
     this.loginUserData = this.fb.group({
@@ -24,27 +27,51 @@ export class LoginComponent implements OnInit {
       password: [ '', [
         Validators.required
       ]]
-    })
+    });
   }
 
   loginUser() {
-    console.log(this.loginUserData);
     this._auth.loginUser(this.loginUserData.value)
     .subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
+        this._sign.public_key = res.public;
+        this._sign.private_key = res.private;
+        this._sign.certificate = res.cert;
+        // console.log({
+        //   pub: this._sign.public_key,
+        //   priv: this._sign.private_key,
+        //   cert: this._sign.certificate
+        // });
+        // const signature = this._sign.signMessage('test');
+        // const verification = this._sign.verifySignature(signature);
+        // // const encoded = this._sign.encodeToBase64(signature);
+        // console.log(verification);
         localStorage.setItem('token', res.token);
-        this._router.navigate(['/home']);
-        this.submitResult = 'Welkom bij Zippi Web-beheer';
-        if (this._auth.loggedIn) {
-          this._sign.createKeyPair();
-          this._router.navigate(['/chat']);
-        } else {
-          this._router.navigate(['/login']);
-        }
+        localStorage.setItem('username', res.username);
+        localStorage.setItem('userId', res.userId);
+        this._router.navigate(['/stream']);
       },
       err => {
         // this.submitResult = err.error.Error;
+        console.log(err);
+      }
+    );
+  }
+
+  loginUserDev() {
+    this._auth.loginUser({name: 'qwe', password: 'qwe'})
+    .subscribe(
+      res => {
+        this._sign.public_key = res.public;
+        this._sign.private_key = res.private;
+        this._sign.certificate = res.cert;
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('username', res.username);
+        localStorage.setItem('userId', res.userId);
+        this._router.navigate(['/stream']);
+      },
+      err => {
         console.log(err);
       }
     );

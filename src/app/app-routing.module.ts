@@ -1,29 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { StreamComponent } from './components/stream/stream.component';
-import { LoginComponent } from './components/authentication/login/login.component';
-import { ChatComponent } from './components/chat/chat.component';
+import { LoginComponent } from './components/authentication/login/login.component'
+import { AuthGuard } from './services/auth/auth-guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path:'',
+    component: StreamComponent, 
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'login',
     component: LoginComponent
   },
   {
-    path: '*',
-    component: LoginComponent
-  },
-  {
-    path: 'stream',
-    component: StreamComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'chat',
-    component: ChatComponent
+    path:'stream',
+    component: StreamComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

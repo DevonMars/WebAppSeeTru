@@ -1,50 +1,74 @@
 import { Injectable } from '@angular/core';
 import { md, pki, util, asn1 } from 'node-forge';
-import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignService {
-
-  private _publicKey;
-  private _privateKey;
-  private secret = 'seeChange';
+  private _public_key;
+  private _private_key;
+  private _certificate;
 
   constructor() { }
 
-  get publicKey() {
-    return this._publicKey;
-  }
-
-  get privateKey() {
-    return this._privateKey;
-  }
-
-  createKeyPair() {
-    const keys = pki.rsa.generateKeyPair({ bits: 2048 });
-    this._privateKey = keys.privateKey;
-    this._publicKey = keys.publicKey;
-    console.log({
-      priv: this._privateKey,
-      pub: this._publicKey
-    });
-  }
-
-  digestMessage(msg: string) {
+  signMessage(msg) {
     const messageDigest = md.sha256.create();
     messageDigest.update(msg);
-    // console.log(messageDigest.digest().toHex());
-    return messageDigest.digest().toHex();
+    // console.log({
+    //   message: msg,
+    //   hash: messageDigest.digest().toHex()
+    // });
+    const signature = this.private_key.sign(messageDigest);
+    const encodeSig = asn1.derToOid(signature);
+    const decodeSig = asn1.oidToDer(encodeSig);
+    console.log({
+      encode: encodeSig,
+      decode: decodeSig,
+      sig: signature
+    });
+    return { signature, messageDigest, msg, encodeSig };
   }
 
-  signHash(msg: string) {
-    const messageDigest = md.sha256.create();
-    messageDigest.update(msg, 'utf8');
-    const signature = this.privateKey.sign(messageDigest);
-    var hex = util.bytesToHex(signature);
-    console.log(hex);
-    return signature;
+  verifySignature(obj) {
+    const verified = this._certificate.publicKey.verify(obj.messageDigest.digest().bytes(), obj.signature);
+    // console.log({
+    //   sig: obj.signature,
+    //   msghash: obj.messageDigest.digest().toHex(),
+    //   msg: obj.msg,
+    //   verified: verified,
+    //   pub: this.public_key,
+    //   certPub: this.certificate.publicKey
+    // });
+    // console.log({
+    //   verified: verified
+    // });
+    return verified;
+  }
+
+  get public_key() {
+    return this._public_key;
+  }
+
+  set public_key(value) {
+    this._public_key = pki.publicKeyFromPem(value);
+  }
+
+  get private_key() {
+    return this._private_key;
+  }
+
+  set private_key(value) {
+    this._private_key = pki.privateKeyFromPem(value);
+  }
+
+  get certificate() {
+    const certPem = pki.certificateToPem(this._certificate);
+    return certPem;
+  }
+
+  set certificate(value) {
+    this._certificate = pki.certificateFromPem(value);
   }
 
 }
