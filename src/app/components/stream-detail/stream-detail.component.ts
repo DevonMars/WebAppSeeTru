@@ -21,6 +21,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   messagetxt: String;
   private _msgSub: Subscription;
   private _viewSub: Subscription;
+  disableButton = false;
 
   constructor(
     private _streamService: StreamService,
@@ -60,6 +61,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   }
 
   sendMessage() {
+    this.disableButton = true;
     this.message.message = this.messagetxt;
     this.message.authorname = localStorage.getItem('username');
     this.message.author = localStorage.getItem('userId');
@@ -69,6 +71,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
     this.msgService.newMessage(this.message).subscribe(
       res => {
         this.messagetxt = '';
+        this.disableButton = false;
         console.log(res);
       },
       err => console.log(err)
