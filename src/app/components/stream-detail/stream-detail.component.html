@@ -1,6 +1,7 @@
 <div *ngIf="stream" class="card mt-1">
   <div class="card-header">
-    <div class="float-left">{{stream.title}}</div>
+    <div class="float-left">{{stream.title}}</div><br>
+    <p>Currently watching: {{viewers}}</p>
     <!-- <div class="float-right"><button (click)="removeStream(i)">X</button></div> -->
   </div>
   <div class="card-body">
@@ -18,7 +19,7 @@
         <input type="text" [(ngModel)]="messagetxt" class="full-width float-left">
       </div>
       <div class="col-md-1">
-        <button class="btn btn-danger float-right" (click)="sendMessage()">Send</button>
+        <button class="btn btn-danger float-right" [disabled]="disableButton" (click)="sendMessage()">Send</button>
       </div>
     </div>
   </div>
