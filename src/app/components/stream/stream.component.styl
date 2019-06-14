@@ -48,3 +48,27 @@ border-radius: 10px;
 -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
 background-color: #0d0d0d; }
 
+    .image {
+    height:40em; 
+    background-size:auto;
+    width:auto;
+    background-position:50% 50%;
+    background-repeat: no-repeat;
+}
+
+.image::after {
+  content: "";
+  background: url('/assets/circle-big.jpg');
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+    background-repeat: no-repeat;
+    background-position:50% 50%;
+    height:40em; 
+    background-size:auto;
+    width:auto;
+}
