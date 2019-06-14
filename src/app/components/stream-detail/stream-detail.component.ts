@@ -4,9 +4,10 @@ import { StreamService } from 'src/app/services/stream/stream.service';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message/message.service';
 import { Message } from 'src/app/models/message';
-declare var $: any;
 import { StreamComponent } from '../stream/stream.component'
 import { SignService } from 'src/app/services/sign/sign.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-stream-detail',
@@ -17,7 +18,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   @Input() stream: Stream;
   messages = [];
   viewers: Number;
-  message: Message = { authorname: '', author: '', message: '', signature: '', certificate: this._sign.certificate};
+  message: Message = { authorname: '', author: '', message: '', signature: '', certificate: this._sign.certificate };
   messagetxt: String;
   private _msgSub: Subscription;
   private _viewSub: Subscription;
@@ -81,6 +82,5 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
 
   autoScroll() {
     $(".scrollfield.chatbox").stop().animate({ scrollTop: $(".scrollfield.chatbox")[0].scrollHeight}, 1000);
+    }
   }
-
-}
