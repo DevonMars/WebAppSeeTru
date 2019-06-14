@@ -33,7 +33,8 @@ export class StreamComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._viewSub.unsubscribe();
+    //this._viewSub.unsubscribe();
+    console.log('NIET VERGETEN UNSUBSCRIBE TE FIXEN IN STREAM.COMPONENT.TS')
   }
 
   addToActiveStreams(stream: any) {
