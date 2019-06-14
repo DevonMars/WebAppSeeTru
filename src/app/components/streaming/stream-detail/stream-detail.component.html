@@ -1,13 +1,13 @@
-<div *ngIf="stream" class="card mt-1">
+<div *ngIf="stream" class="card mt-1 bg-house-color">
   <div class="card-header">
-    <div class="float-left">{{stream.title}}</div><br>
-    <p>Currently watching: {{viewers}}</p>
+    <div class="float-left">{{stream.title}}</div>
+    <div class="float-right">Currently watching: {{viewers}}</div>
     <!-- <div class="float-right"><button (click)="removeStream(i)">X</button></div> -->
   </div>
   <div class="card-body">
     <img src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg"
       class="img-fluid">
-    <div class="scrollfield chatbox mt-1" id="scrollbox-inner">
+    <div class="scrollfield chatbox mt-1 bordered" id="scrollbox-inner">
       <div *ngFor="let message of messages" (change)="scrollDown()">
         <p><strong>{{message.authorname}} : </strong> {{message.message}}</p>
       </div>
@@ -19,7 +19,7 @@
         <input type="text" [(ngModel)]="messagetxt" class="full-width float-left">
       </div>
       <div class="col-md-1">
-        <button class="btn btn-danger float-right" [disabled]="disableButton" (click)="sendMessage()">Send</button>
+        <button class="btn btn-danger float-right" (click)="sendMessage()">Send</button>
       </div>
     </div>
   </div>

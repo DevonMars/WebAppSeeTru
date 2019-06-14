@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { StreamService } from '../../services/stream/stream.service';
+import { StreamService } from '../../../services/stream/stream.service';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message/message.service';
 
@@ -40,7 +40,6 @@ export class StreamComponent implements OnInit, OnDestroy {
     if (this.activeStreams.length <= 3) {
       for (let i of this.activeStreams) {
         if (i == stream) {
-          alert('You are already watching this stream');
           console.log('You are already watching this stream')
           return false;
         }
@@ -48,7 +47,6 @@ export class StreamComponent implements OnInit, OnDestroy {
      this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
       this.activeStreams.push(stream)
     } else {
-      alert('Too many streams open');
       console.log('Too many streams open')
     }
   }
