@@ -1,3 +1,18 @@
-<p>
-  profile works!
-</p>
+<div *ngIf="user" class="card bg-dark mt-2">
+  <div class="card-header text-center">
+    <h2 class="primary-color">{{user.name}}'s profile</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">        
+          <label class="text-light">You currently have:</label>
+          <p class="text-light">{{user.kudos}} kudo's</p>
+      </div>
+      <div class="col-md-6">
+        <img src="{{user.profilePicture}}" alt="profilePicture" height="300px; width: 300px;" class="img-fluid">
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+  </div>
+</div>
