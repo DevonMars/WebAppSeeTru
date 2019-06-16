@@ -7,6 +7,7 @@ import { Message } from 'src/app/models/message';
 declare var $: any;
 import { StreamComponent } from '../stream/stream.component'
 import { SignService } from 'src/app/services/sign/sign.service';
+//import { StreamComponent } from 'src/app/components/streaming/stream/stream.component'
 
 @Component({
   selector: 'app-stream-detail',
@@ -26,7 +27,8 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   constructor(
     private _streamService: StreamService,
     private msgService: MessageService,
-    private _sign: SignService
+    private _sign: SignService,
+    private _streamComponent : StreamComponent
   ) { }
 
   ngOnInit() {

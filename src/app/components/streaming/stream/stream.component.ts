@@ -1,7 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Injectable } from '@angular/core';
 import { StreamService } from '../../../services/stream/stream.service';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message/message.service';
+
+@Injectable()
 
 @Component({
   selector: 'app-stream',
