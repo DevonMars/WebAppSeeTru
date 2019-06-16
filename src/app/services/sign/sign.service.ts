@@ -20,14 +20,16 @@ export class SignService {
     //   hash: messageDigest.digest().toHex()
     // });
     const signature = this.private_key.sign(messageDigest);
+    const sigHexed = util.bytesToHex(signature);
     const encodeSig = asn1.derToOid(signature);
     const decodeSig = asn1.oidToDer(encodeSig);
     console.log({
       encode: encodeSig,
       decode: decodeSig,
-      sig: signature
+      sig: signature,
+      sigHex: sigHexed,
     });
-    return { signature, messageDigest, msg, encodeSig };
+    return { signature, messageDigest, msg, encodeSig, sigHexed };
   }
 
   verifySignature(obj) {

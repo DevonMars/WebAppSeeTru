@@ -67,7 +67,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
     this.message.author = localStorage.getItem('userId');
     this.message.host = this.stream.host._id;
     const signature = this._sign.signMessage(this.messagetxt);
-    this.message.signature = signature.signature;
+    this.message.signature = signature.sigHexed;
     this.msgService.newMessage(this.message).subscribe(
       res => {
         this.messagetxt = '';

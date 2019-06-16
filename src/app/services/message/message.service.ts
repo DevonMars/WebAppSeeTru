@@ -13,6 +13,7 @@ export class MessageService {
   viewers = this.socket.fromEvent<any>('viewers');
   viewSingle = this.socket.fromEvent<any>('viewSingle');
   private _msgUrl = 'http://thecirclebackend.herokuapp.com/api/message/';
+  // private _msgUrl = 'http://thecircle-backend.herokuapp.com/api/message/';
   // private _msgUrl = 'http://localhost:5000/api/message';
 
   constructor(private http: HttpClient, private socket: Socket) { }
