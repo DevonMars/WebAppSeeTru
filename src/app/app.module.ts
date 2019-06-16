@@ -24,6 +24,7 @@ import { AuthGuard } from './services/auth/auth-guard';
 import { SignService } from './services/sign/sign.service';
 import { UserIndexComponent } from './components/users/user-index/user-index.component';
 import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
+import { ProfileComponent } from './components/users/profile/profile.component';
 
 const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
 //  const config: SocketIoConfig = { url: 'localhost:5000', options: {} };
@@ -37,7 +38,8 @@ const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', o
     LoginComponent,
     RegisterComponent,
     UserIndexComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
