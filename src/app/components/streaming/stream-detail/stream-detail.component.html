@@ -1,4 +1,4 @@
-<div *ngIf="stream" class="card mt-1 bg-house-color">
+<div *ngIf="stream" class="card mt-1 bg-dark">
   <div class="card-header">
     <div class="float-left">{{stream.title}}</div>
     <div class="float-right">Currently watching: {{viewers}}</div>
@@ -15,10 +15,10 @@
   </div>
   <div class="card-footer">
     <div class="row">
-      <div class="col-md-11">
+      <div class="col-md-10">
         <input type="text" [(ngModel)]="messagetxt" class="full-width float-left">
       </div>
-      <div class="col-md-1">
+      <div class="col-md-2">
         <button class="btn btn-danger float-right" [disabled]="disableButton" (click)="sendMessage()">Send</button>
       </div>
     </div>

@@ -1,35 +1,33 @@
-<div class="mt-5">
-  <div class="row">
-    <div class="col-md-4">
-    </div>
-    <div class="position-fixed col-md-4 mt-5">
-      <div class="ml-4 card leftbox bg-house-color text-center">
-        <div class="card-header">
-          <h1 class="color-black">Streams</h1>
-          <p>Total viewers: {{viewAmount}}</p>
-        </div>
-        <div class="card-body scrollfield">
-          <div class="stream-list-item row bg-sec-color mt-1" *ngFor="let stream of streams"
-            (click)="addToActiveStreams(stream)"> <!--*ngIf="stream.active"-->
-            <div class="col-md-4 menu-height">
-              <img src="{{stream.host.profilePicture}}" class="fill">
-              <!-- <img src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg" class="fill"> -->
-            </div>
-            <div class="col-md-8 menu-height">
-              <h4>{{stream.title}}</h4>
-              <h4>Host: {{stream.host.name}}</h4>
-            </div>
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="position-fixed col-md-4 mt-5">
+    <div class="ml-4 card leftbox bg-dark text-center">
+      <div class="card-header">
+        <h1 class="color-black">Streams</h1>
+        <p>Total viewers: {{viewAmount}}</p>
+      </div>
+      <div class="card-body scrollfield">
+        <div class="stream-list-item row bg-sec-color mt-1" *ngFor="let stream of streams"
+          (click)="addToActiveStreams(stream)">
+          <!--*ngIf="stream.active"-->
+          <div class="col-md-4 menu-height">
+            <img src="{{stream.host.profilePicture}}" class="fill">
+          </div>
+          <div class="col-md-8 menu-height">
+            <h4>{{stream.title}}</h4>
+            <h4>Host: {{stream.host.name}}</h4>
           </div>
         </div>
-        <div class="card-footer">
-        </div>
+      </div>
+      <div class="card-footer">
       </div>
     </div>
-    <div class="col-md-8 mt-5 row">
-      <div class="col-md-6" *ngFor="let activeStream of activeStreams; let i = index;">
-        <div class="float-right"><button (click)="removeStream(i)">X</button></div>
-        <app-stream-detail [stream]="activeStream"></app-stream-detail>
-      </div>
+  </div>
+  <div class="col-md-8 mt-5 row">
+    <div class="col-md-6" *ngFor="let activeStream of activeStreams; let i = index;">
+      <div class="float-right"><button (click)="removeStream(i)">X</button></div>
+      <app-stream-detail [stream]="activeStream"></app-stream-detail>
     </div>
   </div>
 </div>
