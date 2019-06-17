@@ -20,7 +20,7 @@
         </div>     
     </div>
     <div class="navbar-nav">
-      <div class="nav-item">
+      <div class="nav-item" *ngIf="_auth.loggedIn()">
         <a class="nav-link" [routerLink]="['profile']" routerLinkActive="router-link-active" >profile</a>
       </div>
     </div>
