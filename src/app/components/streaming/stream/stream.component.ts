@@ -37,26 +37,30 @@ export class StreamComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     //this._viewSub.unsubscribe();
     console.log('NIET VERGETEN UNSUBSCRIBE TE FIXEN IN STREAM.COMPONENT.TS')
+    for (let i = 0; i < this.activeStreams.length; i++) {
+      this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id })
+      console.log('stopped watching: ', i)
+    }
   }
 
   addToActiveStreams(stream: any) {
-    if (this.activeStreams.length <= 3) {
-      for (let i of this.activeStreams) {
-        if (i == stream) {
-          console.log('You are already watching this stream')
-          return false;
-        }
-      };
-     this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
-      this.activeStreams.push(stream)
-    } else {
+    for (let i of this.activeStreams) {
+      if (i == stream) {
+        console.log('You are already watching this stream')
+        return false;
+      }
+    };
+    if (this.activeStreams.length >= 4) {
       console.log('Too many streams open')
+    } else {
+      this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
+      this.activeStreams.push(stream)
     }
   }
 
   removeStream(i: number) {
+    console.log('nmber: ', i)
     this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id })
     this.activeStreams.splice(i, 1);
   }
-
 }
