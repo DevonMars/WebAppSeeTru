@@ -12,6 +12,8 @@ export class StreamComponent implements OnInit, OnDestroy {
   streams = [];
   activeStreams = [];
   messages = [];
+  showAlert = false;
+  activeAlert = false;
   private _viewSub: Subscription;
   viewAmount: Number;
 
@@ -40,22 +42,34 @@ export class StreamComponent implements OnInit, OnDestroy {
     if (this.activeStreams.length <= 3) {
       for (let i of this.activeStreams) {
         if (i == stream) {
-          alert('You are already watching this stream');
-          console.log('You are already watching this stream')
+          this.showAlert = true;
+          this.showResult();
+          // alert('You are already watching this stream');
+           console.log('You are already watching this stream')
           return false;
         }
       };
      this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
       this.activeStreams.push(stream)
     } else {
-      alert('Too many streams open');
-      console.log('Too many streams open')
+      this.activeAlert = true;
+      this.showResult();
     }
   }
 
   removeStream(i: number) {
     this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id })
     this.activeStreams.splice(i, 1);
+  }
+
+  showResult() {
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 3000);
+
+    setTimeout(() => {
+      this.activeAlert = false;
+    },3000);
   }
 
 }
