@@ -1,13 +1,13 @@
-<div class="card main-card bg-house-color mt-5" *ngIf="streamer">
+<div class="card main-card bg-dark mt-5" *ngIf="streamer">
   <div class="card-header">
-    <div class="card-title color-black text-center">
+    <div class="card-title primary-color text-center">
       <h1>{{streamer.name}}</h1>
     </div>
   </div>
   <div class="card-body">
     <div class="row">
       <div class="col-md-9">
-        <h4 class="color-black bottom">Kudos : {{streamer.kudos}}</h4>
+        <h4 class="bottom text-white">Kudos : {{streamer.kudos}}</h4>
       </div>
       <div class="col-md-3">
         <img src="{{streamer.profilePicture}}" class="fill picheight">
@@ -16,7 +16,7 @@
     <hr />
     <div class="row">
       <div class="col-md-6 text-center">
-        <div class="card bg-house-color">
+        <div class="card bg-light">
           <div class="card-header">
             <h4 class="color-black">
               Messages sent to {{streamer.name}}:
@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="col-md-6 text-center">
-        <div class="card bg-house-color">
+        <div class="card bg-light">
           <div class="card-header">
             <h4 class="color-black">
               {{streamer.name}}'s activities:
