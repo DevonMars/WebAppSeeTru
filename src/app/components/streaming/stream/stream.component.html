@@ -1,34 +1,37 @@
-<div class="row">
-  <div class="col-md-4">
-  </div>
-  <div class="position-fixed col-md-4 mt-5">
-    <div class="ml-4 card leftbox bg-dark">
-      <div class="card-header text-center">
-        <h1 class="primary-color">Streams</h1>
-        <p class="text-white">Total viewers: {{viewAmount}}</p>
-      </div>
-      <div class="card-body scrollfield">
-        <div class="stream-list-item row bg-house-color mt-1" *ngFor="let stream of streams"
-          (click)="addToActiveStreams(stream)">
-          <!--*ngIf="stream.active"-->
-          <div class="col-md-4 menu-height">
-            <img src="{{stream.host.profilePicture}}" class="fill">
-          </div>
-          <div class="col-md-8 menu-height">
-            <h4 class="bot-left">{{stream.title}}</h4>
-            <p class="top-right">Host: {{stream.host.name}}</p>
+<div class="ml-4">
+
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="position-fixed col-md-4 mt-5">
+      <div class="card leftbox bg-dark">
+        <div class="card-header text-center">
+          <h1 class="primary-color">Streams</h1>
+          <p class="text-white">Total viewers: {{viewAmount}}</p>
+        </div>
+        <div class="card-body scrollfield">
+          <div class="stream-list-item row bg-house-color mt-1" *ngFor="let stream of streams"
+            (click)="addToActiveStreams(stream)">
+            <!--*ngIf="stream.active"-->
+            <div class="col-md-4 menu-height">
+              <img src="{{stream.host.profilePicture}}" class="fill">
+            </div>
+            <div class="col-md-8 menu-height">
+              <h4 class="bot-left">{{stream.title}}</h4>
+              <p class="top-right">Host: {{stream.host.name}}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="card-footer">
+        <div class="card-footer">
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-8 mt-5 row">
-    <div class="col-md-6" *ngFor="let activeStream of activeStreams; let i = index;">
-      <div  class="card mt-1 bg-dark">
-       <button (click)="removeStream(i)" class="float-right btn btn-danger">X</button>
-        <app-stream-detail [stream]="activeStream"></app-stream-detail>
+    <div class="col-md-8 mt-5 row">
+      <div class="col-md-6" *ngFor="let activeStream of activeStreams; let i = index;">
+        <div  class="card mt-1 bg-dark">
+         <button (click)="removeStream(i)" class="float-right btn btn-danger">X</button>
+          <app-stream-detail [stream]="activeStream"></app-stream-detail>
+        </div>
       </div>
     </div>
   </div>

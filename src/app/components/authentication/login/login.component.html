@@ -1,12 +1,12 @@
 <div class="container">
   <div class="card bg-dark mt-5 login-form text-center">
        <div class="card-header">
-         <img src="https://hdqwalls.com/download/the-circle-2017-movie-wide-1440x900.jpg" style="width:300px;" class="img-fluid img-round">
+         <!-- <img src="https://hdqwalls.com/download/the-circle-2017-movie-wide-1440x900.jpg" style="width:300px;" class="img-fluid img-round"> -->
          <h1 class="primary-color">Log in as True You</h1>
        </div>
-       <div class="card-body bg-light">
+       <div class="card-body">
          <form [formGroup]="loginUserData">
-           <label class="float-left">Username</label>
+           <label class="float-left text-light">Username</label>
            <mat-form-field appearance="outline" class="full-width mb-4">
              <input matInput formControlName="name">
              <mat-error *ngIf="name.invalid">{{validateName()}}</mat-error>
@@ -20,7 +20,7 @@
          </form>
        </div>
        <div class="card-footer">
-          <button (click)="loginUser()" type="button" class="btn btn-danger float-right">Log in</button>
+          <button (click)="loginUser()" type="button" class="btn btn-danger float-center">Log in</button>
           <button (click)="loginUserDev()" type="button" class="btn btn-success float-left">QWE shortcut</button>
        </div>
        <!-- <div class="card-footer">
