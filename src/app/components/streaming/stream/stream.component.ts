@@ -14,8 +14,11 @@ export class StreamComponent implements OnInit, OnDestroy {
   streams = [];
   activeStreams = [];
   messages = [];
+  showAlert = false;
+  activeAlert = false;
   private _viewSub: Subscription;
   viewAmount: Number;
+  alertMsg = '';
 
   constructor(private _streamService: StreamService, private msgService: MessageService) { }
 
@@ -43,20 +46,47 @@ export class StreamComponent implements OnInit, OnDestroy {
     }
   }
 
+  // addToActiveStreams(stream: any) {
+  //   for (let i of this.activeStreams) {
+  //     if (i == stream) {
+  //       console.log('You are already watching this stream')
+  //       return false;
+  //     }
+  //   };
+  //   if (this.activeStreams.length >= 4) {
+  //     console.log('Too many streams open')
+  //   } else {
+  //     this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
+  //     this.activeStreams.push(stream)
+  //   }
+  // }
+
   addToActiveStreams(stream: any) {
     for (let i of this.activeStreams) {
       if (i == stream) {
+        this.showResult('You are already watching this stream');
         console.log('You are already watching this stream')
         return false;
       }
     };
     if (this.activeStreams.length >= 4) {
+
+      this.showResult('You can only watch 4 streams at a time');
       console.log('Too many streams open')
     } else {
       this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
       this.activeStreams.push(stream)
     }
   }
+  
+  showResult(msg) {
+    this.alertMsg = msg;
+    this.showAlert = true;
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 3000);
+  }
+
 
   removeStream(i: number) {
     console.log('nmber: ', i)
