@@ -81,7 +81,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   }
 
   autoScroll() {
-    $(".scrollfield.chatbox").stop().animate({ scrollTop: $(".scrollfield.chatbox")[0].scrollHeight}, 1000);
+  // $(".scrollfield.chatbox").stop().animate({ scrollTop: $(".scrollfield.chatbox")[0].scrollHeight}, 1000);
   }
 
 }
