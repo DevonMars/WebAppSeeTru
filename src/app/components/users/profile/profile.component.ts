@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   message : Message
   user: User
   messages: []
+  activities : []
   private _msgSub : Subscription
   messagetxt : String
   disableButton = false
@@ -35,6 +36,7 @@ export class ProfileComponent implements OnInit {
       res => {
         this.user = res
         this.messages = this.user.messages
+        this.activities = this.user.activities
         console.log(this.messages)
       },
       err => {
@@ -46,6 +48,14 @@ export class ProfileComponent implements OnInit {
       this.getMessages();
     });
   }
+
+//   getFormattedDate(date : Date) {
+//     let year = date.getFullYear();
+//     let month = (1 + date.getMonth()).toString().padStart(2, '0');
+//     let day = date.getDate().toString().padStart(2, '0');
+  
+//     return month + '/' + day + '/' + year;
+// }
 
   getMessages() {
     this._streamService.getMessages(localStorage.getItem('userId')).subscribe(
