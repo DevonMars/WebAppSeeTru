@@ -8,21 +8,25 @@
       </div>
     </div>
 
-    <!-- <div class="float-right"><button (click)="removeStream(i)">X</button></div> -->
   </div>
   <div class="card-body">
-    <!-- <img src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg"
-      class="img-fluid"> -->
-      <video id="videoPlayer" controls muted="muted" autoplay class="img-fluid"> 
-        <source src="http://thecirclebackend.herokuapp.com/api/video" type="video/mp4">
-      </video>
-      <div class="float-left text-white">Currently watching: {{viewers}}</div>
+    <video id="videoPlayer" controls muted="muted" autoplay class="img-fluid">
+      <source src="http://thecirclebackend.herokuapp.com/api/video" type="video/mp4">
+    </video>
+    <!-- <iframe
+    src="https://player.twitch.tv/?channel=bobross&muted=true"
+class="img-fluid"
+    frameborder="0"
+    scrolling="no"
+    allowfullscreen="true">
+</iframe> -->
+    <div class="float-left text-white">Currently watching: {{viewers}}</div>
     <div class="scrollfield bg-light mt-1 bordered" id="scrollbox-inner">
       <div *ngFor="let message of messages" (change)="scrollDown()">
-      <span class="ml-2"><strong>{{message.authorname}} : </strong> {{message.message}}</span>  
+        <span class="ml-2"><strong>{{message.authorname}} : </strong> {{message.message}}</span>
       </div>
     </div>
-    
+
   </div>
   <div class="card-footer">
     <div class="row">

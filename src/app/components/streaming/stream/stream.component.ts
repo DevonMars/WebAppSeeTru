@@ -41,7 +41,7 @@ export class StreamComponent implements OnInit, OnDestroy {
     //this._viewSub.unsubscribe();
     console.log('NIET VERGETEN UNSUBSCRIBE TE FIXEN IN STREAM.COMPONENT.TS')
     for (let i = 0; i < this.activeStreams.length; i++) {
-      this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id })
+      this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id, stream: this.activeStreams[i] })
       console.log('stopped watching: ', i)
     }
   }
@@ -50,20 +50,17 @@ export class StreamComponent implements OnInit, OnDestroy {
     for (let i of this.activeStreams) {
       if (i == stream) {
         this.showResult('You are already watching this stream');
-        console.log('You are already watching this stream')
         return false;
       }
     };
     if (this.activeStreams.length >= 4) {
-
       this.showResult('You can only watch 4 streams at a time');
-      console.log('Too many streams open')
     } else {
       this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
       this.activeStreams.push(stream)
     }
   }
-  
+
   showResult(msg) {
     this.alertMsg = msg;
     this.showAlert = true;
@@ -73,8 +70,7 @@ export class StreamComponent implements OnInit, OnDestroy {
   }
 
   removeStream(i: number) {
-    console.log('nmber: ', i)
-    this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id })
+    this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id, stream: this.activeStreams[i] })
     this.activeStreams.splice(i, 1);
   }
 }
