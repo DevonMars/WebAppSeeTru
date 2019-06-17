@@ -38,24 +38,26 @@ export class StreamComponent implements OnInit, OnDestroy {
     this._viewSub.unsubscribe();
   }
 
-  addToActiveStreams(stream: any) {
-    if (this.activeStreams.length <= 3) {
-      for (let i of this.activeStreams) {
-        if (i == stream) {
-          this.showAlert = true;
-          this.showResult();
-          // alert('You are already watching this stream');
-           console.log('You are already watching this stream')
-          return false;
-        }
-      };
-     this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
-      this.activeStreams.push(stream)
-    } else {
-      this.activeAlert = true;
+addToActiveStreams(stream: any) {
+  for (let i of this.activeStreams) {
+    if (i == stream) {
+      this.showAlert = true;
       this.showResult();
+      console.log('You are already watching this stream')
+      return false;
     }
+  };
+  if (this.activeStreams.length >= 4) {
+    this.activeAlert = true;
+    this.showResult();
+    console.log('Too many streams open')
+  } else {
+    this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
+    this.activeStreams.push(stream)
   }
+}
+
+  
 
   removeStream(i: number) {
     this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id })
