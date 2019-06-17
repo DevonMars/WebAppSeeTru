@@ -1,0 +1,36 @@
+<div *ngIf="stream">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div>
+          <h3 class="primary-color">{{stream.title}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="float-right"><button (click)="removeStream(i)">X</button></div> -->
+  </div>
+  <div class="card-body">
+    <!-- <img src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg"
+      class="img-fluid"> -->
+      <video id="videoPlayer" controls muted="muted" autoplay class="img-fluid"> 
+        <source src="http://thecirclebackend.herokuapp.com/api/video" type="video/mp4">
+      </video>
+      <div class="float-left text-white">Currently watching: {{viewers}}</div>
+    <div class="scrollfield bg-light mt-1 bordered" id="scrollbox-inner">
+      <div *ngFor="let message of messages" (change)="scrollDown()">
+      <span class="ml-2"><strong>{{message.authorname}} : </strong> {{message.message}}</span>  
+      </div>
+    </div>
+    
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-10">
+        <input type="text" [(ngModel)]="messagetxt" class="full-width float-left box-height">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-danger float-right" [disabled]="disableButton" (click)="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>

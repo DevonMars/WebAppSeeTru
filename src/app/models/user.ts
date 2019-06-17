@@ -3,4 +3,5 @@ export class User {
     name: String;
     password: String;
     messages: [];
+    activities?: [];
 }

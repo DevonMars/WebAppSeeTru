@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    console.log(this.loginUserData);
     this._auth.loginUser(this.loginUserData.value)
     .subscribe(
       res => {
@@ -60,6 +59,24 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  loginUserDev() {
+    this._auth.loginUser({name: 'qwe', password: 'qwe'})
+    .subscribe(
+      res => {
+        this._sign.public_key = res.public;
+        this._sign.private_key = res.private;
+        this._sign.certificate = res.cert;
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('username', res.username);
+        localStorage.setItem('userId', res.userId);
+        this._router.navigate(['/stream']);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
   get name() {
     return this.loginUserData.get('name');
   }
@@ -69,11 +86,11 @@ export class LoginComponent implements OnInit {
   }
 
   validateName() {
-    return this.name.hasError('required') ? 'Voer een naam in' : '';
+    return this.name.hasError('required') ? 'Username is required' : '';
   }
 
   validatePassword() {
-    return this.password.hasError('required') ? 'Voer een wachtwoord in' : '';
+    return this.password.hasError('required') ? 'Password is required' : '';
   }
 
 }

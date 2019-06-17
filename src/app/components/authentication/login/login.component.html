@@ -1,30 +1,27 @@
 <div class="container">
-  <div class="card mt-5 login-form text-center">
+  <div class="card bg-dark mt-5 login-form text-center">
        <div class="card-header">
-         <h1 class="color-black">Log in as True You</h1>
+         <!-- <img src="https://hdqwalls.com/download/the-circle-2017-movie-wide-1440x900.jpg" style="width:300px;" class="img-fluid img-round"> -->
+         <h1 class="primary-color">Log in as True You</h1>
        </div>
        <div class="card-body">
          <form [formGroup]="loginUserData">
-           <hr />
-           <label for="">Gebruikersnaam</label>
-           <br />
-           <mat-form-field appearance="outline" class="full-width">
-             <input matInput placeholder="Gebruikersnaam" formControlName="name" class="text-center string-box">
+           <label class="float-left text-light">Username</label>
+           <mat-form-field appearance="outline" class="full-width mb-4">
+             <input matInput formControlName="name">
              <mat-error *ngIf="name.invalid">{{validateName()}}</mat-error>
            </mat-form-field>
-           <br />
-           <label class="mt-4" for="">Wachtwoord</label>
-           <br />
+           <label class="float-left">Password</label>          
            <mat-form-field appearance="outline" class="full-width">
-             <input matInput placeholder="Wachtwoord" formControlName="password" class="text-center string-box" type="password">
+             <input matInput formControlName="password" type="password">
              <mat-error *ngIf="password.invalid">{{validatePassword()}}</mat-error>
            </mat-form-field>
-           <br />
-           <br>
-           <button (click)="loginUser()" type="button" class="btn btn-dark float-center mt-2 mb-2">Log in</button>
-           <br />
            <label>{{submitResult}}</label>
          </form>
+       </div>
+       <div class="card-footer">
+          <button (click)="loginUser()" type="button" class="btn btn-danger float-center">Log in</button>
+          <button (click)="loginUserDev()" type="button" class="btn btn-success float-left">QWE shortcut</button>
        </div>
        <!-- <div class="card-footer">
          <button (click)="loginUser()" class="btn btn-danger"></button>
