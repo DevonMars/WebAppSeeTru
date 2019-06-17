@@ -48,30 +48,13 @@ export class ProfileComponent implements OnInit {
   }
 
   getMessages() {
-    this._streamService.getMessages(this.user._id).subscribe(
+    this._streamService.getMessages(localStorage.getItem('userId')).subscribe(
       res => {
         this.messages = res;
-        //.autoScroll();
+        console.log(this.messages)
+        //this.autoScroll();
       }
     );
-  }
-
-  sendMessage() {
-    this.message.message = this.messagetxt;
-    this.message.authorname = localStorage.getItem('username');
-    this.message.author = localStorage.getItem('userId');
-    this.message.host = this.user._id;
-    const signature = this._sign.signMessage(this.messagetxt);
-    this.message.signature = signature.signature;
-    this.msgService.newMessage(this.message).subscribe(
-      res => {
-        this.messagetxt = '';
-        this.disableButton = false;
-        console.log(res);
-      },
-      err => console.log(err)
-    );
-    // this.autoScroll();
   }
 
   // autoScroll() {
