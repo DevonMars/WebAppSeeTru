@@ -1,18 +1,37 @@
-<div *ngIf="user" class="card bg-dark mt-2">
+<div *ngIf="user" class="card bg-dark mt-2 ml-3 mr-3">
   <div class="card-header text-center">
     <h2 class="primary-color">{{user.name}}'s profile</h2>
   </div>
   <div class="card-body">
-    <div class="row">
-      <div class="col-md-6">        
-          <label class="text-light">You currently have:</label>
-          <p class="text-light">{{user.kudos}} kudo's</p>
+    <div class="row" style="height: 350px">
+      <div class="col-md-8">
+        <label class="text-light">You currently have:</label>
+        <p class="text-light">{{user.kudos}} kudo's</p>
 
-          <label class="text-light">You have streamed for:</label>
-          <p class="text-light">{{user.totalStreamTime}} hours</p>
+        <label class="text-light">You have streamed for:</label>
+        <p class="text-light">{{user.totalStreamTime}} hours</p>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <img src="{{user.profilePicture}}" alt="profilePicture" height="300px; width: 300px;" class="img-fluid">
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header text-center">
+            <h2 class="primary-color">Your chat</h2>
+          </div>
+          <div class="card-body">
+            <div class="scrollfield chatbox mt-1 bordered" id="scrollbox-inner">
+              <div *ngFor="let message of messages"> <!--(change)="scrollDown()"-->
+                <p><strong>{{message.authorname}} : </strong> {{message.message}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+          </div>
+        </div>
       </div>
     </div>
   </div>
