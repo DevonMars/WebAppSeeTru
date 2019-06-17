@@ -46,21 +46,6 @@ export class StreamComponent implements OnInit, OnDestroy {
     }
   }
 
-  // addToActiveStreams(stream: any) {
-  //   for (let i of this.activeStreams) {
-  //     if (i == stream) {
-  //       console.log('You are already watching this stream')
-  //       return false;
-  //     }
-  //   };
-  //   if (this.activeStreams.length >= 4) {
-  //     console.log('Too many streams open')
-  //   } else {
-  //     this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
-  //     this.activeStreams.push(stream)
-  //   }
-  // }
-
   addToActiveStreams(stream: any) {
     for (let i of this.activeStreams) {
       if (i == stream) {
@@ -86,7 +71,6 @@ export class StreamComponent implements OnInit, OnDestroy {
       this.showAlert = false;
     }, 3000);
   }
-
 
   removeStream(i: number) {
     console.log('nmber: ', i)
