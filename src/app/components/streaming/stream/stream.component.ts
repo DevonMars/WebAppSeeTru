@@ -1,7 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { StreamService } from '../../services/stream/stream.service';
+import { Component, OnInit, OnDestroy, Injectable } from '@angular/core';
+import { StreamService } from '../../../services/stream/stream.service';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message/message.service';
+
+@Injectable()
 
 @Component({
   selector: 'app-stream',
@@ -33,14 +35,14 @@ export class StreamComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._viewSub.unsubscribe();
+    //this._viewSub.unsubscribe();
+    console.log('NIET VERGETEN UNSUBSCRIBE TE FIXEN IN STREAM.COMPONENT.TS')
   }
 
   addToActiveStreams(stream: any) {
     if (this.activeStreams.length <= 3) {
       for (let i of this.activeStreams) {
         if (i == stream) {
-          alert('You are already watching this stream');
           console.log('You are already watching this stream')
           return false;
         }
@@ -48,7 +50,6 @@ export class StreamComponent implements OnInit, OnDestroy {
      this.msgService.startWatching({ viewer: localStorage.getItem('userId'), host: stream.host._id })
       this.activeStreams.push(stream)
     } else {
-      alert('Too many streams open');
       console.log('Too many streams open')
     }
   }
