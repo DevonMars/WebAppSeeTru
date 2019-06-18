@@ -35,4 +35,9 @@ export class UserDetailComponent implements OnInit {
   selectedCategory(){
 
   }
+
+  converter(input){
+    var ts = input;
+    ts.toLocaleString();
+  }
 }

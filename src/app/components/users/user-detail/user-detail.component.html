@@ -9,6 +9,7 @@
           <div class="row">
             <div class="col-md-4 my-auto">
               <h4 class="text-white">Kudos: {{streamer.kudos}}</h4>
+              <h4 class="text-white">Total streaming time: {{streamer.totalStreamTime}} hours</h4>
             </div>
             <div class="col-md-8 my-auto text-right">
               <img src="{{streamer.profilePicture}}" alt="profilePicture" class="profilePic">
@@ -22,12 +23,12 @@
               </div>
               <div class="row">
                 <div class="scrollfield">
-                  <div *ngFor ="let message of messages">
+                  <div *ngFor="let message of messages">
                     <div class="col-md-12">
                       <p>{{message.message}}</p>
                     </div>
                     <div class="col-md-12">
-                      <p>{{message.createdAt}}</p>
+                      <p><span id="datetime">{{message.createdAt | date : "dd/MM 'at' h:mma"}}</span></p>
                     </div>
                     <hr class="endline">
                   </div>
@@ -45,7 +46,7 @@
                       <p>{{activity.activity}}</p>
                     </div>
                     <div class="col-md-12">
-                      <p>{{activity.createdAt}}</p>
+                        {{activity.createdAt | date : "dd/MM 'at' h:mma" }}
                     </div>
                     <hr class="endline">
                   </div>
@@ -54,17 +55,18 @@
             </div>
             <div class="col-md-4">
               <div class="row infosep">
-                  <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose an activity category:
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" (click)="selectedCategory()">
-                        <a class="dropdown-item">EndStream</a>
-                        <a class="dropdown-item">CreateStream</a>
-                        <a class="dropdown-item">PostMessage</a>
-                        <a class="dropdown-item">StartWatching</a>
-                      </div>
-                    </div>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Choose an activity category:
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" (click)="selectedCategory()">
+                    <a class="dropdown-item">EndStream</a>
+                    <a class="dropdown-item">CreateStream</a>
+                    <a class="dropdown-item">PostMessage</a>
+                    <a class="dropdown-item">StartWatching</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -73,3 +75,8 @@
     </div>
   </div>
 </div>
+
+<script>
+  var dt = new Date();
+  document.getElementById("datetime").innerHTML = (("0" + dt.getDate()).slice(-2)) + "." + (("0" + (dt.getMonth() + 1)).slice(-2)) + "." + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2));
+</script>
