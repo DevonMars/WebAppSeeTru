@@ -50,33 +50,27 @@
                     </div>
                     <hr class="endline">
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="row infosep">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Choose an activity category:
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" (click)="selectedCategory()">
-                    <a class="dropdown-item">EndStream</a>
-                    <a class="dropdown-item">CreateStream</a>
-                    <a class="dropdown-item">PostMessage</a>
-                    <a class="dropdown-item">StartWatching</a>
                   </div>
                 </div>
               </div>
+            <div class="col-md-4">
+              <div class="row infosep">
+                    <form>
+                        <div class="form-group">
+                          <select class="form-control" id="sel1" (change)="selectedCategory($event.target.value)">
+                            <option>No filter</option>
+                            <option>Ended stream</option>
+                            <option>Created stream</option>
+                            <option>Posted message</option>
+                            <option>Started watching</option>
+                          </select>
+                        </div>
+                      </form>
+              </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
-<script>
-  var dt = new Date();
-  document.getElementById("datetime").innerHTML = (("0" + dt.getDate()).slice(-2)) + "." + (("0" + (dt.getMonth() + 1)).slice(-2)) + "." + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2));
-</script>
