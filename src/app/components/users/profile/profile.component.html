@@ -26,10 +26,9 @@
                         <h2 class="primary-color">Your chat</h2>
                       </div>
                       <div class="card-body">
-                        <div class="scrollfield chatbox mt-1 bordered" id="scrollbox-inner">
-                          <div *ngFor="let message of messages">
-                            <!--(change)="scrollDown()"-->
-                            <strong>{{message.authorname}} : </strong> {{message.message}}
+                        <div class="scrollfield bg-light chatbox mt-1 bordered" id="scrollbox-inner">
+                          <div *ngFor="let message of messages" (change)="scrollDown()">
+                           <span class="ml-2"><strong>{{message.authorname}} : </strong> {{message.message}}</span>
                           </div>
                         </div>
                       </div>
@@ -47,8 +46,7 @@
                       </div>
                       <div class="card-body">
                         <div class="scrollfield chatbox mt-1 bordered" id="scrollbox-inner">
-                          <div *ngFor="let activity of activities">
-                            <!--(change)="scrollDown()"-->
+                          <div *ngFor="let activity of activities" (change)="scrollDown()">
                             <div class="row">
                               <div class="col-md-8">
                                 {{activity.activity}}
