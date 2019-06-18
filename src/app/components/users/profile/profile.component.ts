@@ -6,6 +6,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 import { Subscription } from 'rxjs';
 import { Message } from 'src/app/models/message';
 import { SignService } from 'src/app/services/sign/sign.service';
+declare var $: any;
 
 @Component({
   selector: 'app-profile',
@@ -46,6 +47,7 @@ export class ProfileComponent implements OnInit {
     this.getMessages();
     this._msgSub = this.msgService.messages.subscribe(() => {
       this.getMessages();
+      this.autoScroll();
     });
   }
 
@@ -61,14 +63,14 @@ export class ProfileComponent implements OnInit {
     this._streamService.getMessages(localStorage.getItem('userId')).subscribe(
       res => {
         this.messages = res;
+        this.autoScroll();
         console.log(this.messages)
-        //this.autoScroll();
       }
     );
   }
 
-  // autoScroll() {
-  //   $(".scrollfield.chatbox").stop().animate({ scrollTop: $(".scrollfield.chatbox")[0].scrollHeight}, 1000);
-  // }
+  autoScroll() {
+    $(".scrollfield.bg-light.mt-1.bordered").stop().animate({ scrollTop: $(".scrollfield.bg-light.mt-1.bordered")[0].scrollHeight}, 1000);
+  }
 
 }
