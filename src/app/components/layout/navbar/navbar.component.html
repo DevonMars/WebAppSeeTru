@@ -1,14 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-house-color fixed-top">
-    <a class="navbar-brand" [routerLink]="['/login']" routerLinkActive="router-link-active" >The Circle</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/stream">Streams</a>
-        </li>
-      </ul>
+<!-- Image and text -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" [routerLink]="['stream']" routerLinkActive="router-link-active">
+    <img src="https://fanart.tv/fanart/movies/339988/hdmovielogo/the-circle-589606c2e0f5b.png"  class="d-inline-block align-top img-fluid" style="height: 30px" alt="">
+    SeeChange
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-nav mr-auto">
+      <div class="nav-item">
+        <a class="nav-link" [routerLink]="['transparants']" routerLinkActive="router-link-active" >Transparants</a>
+      </div>
+      
     </div>
-  </nav>
+    <div class="navbar-nav">
+      <div class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a>
+        </div>     
+    </div>
+    <div class="navbar-nav">
+      <div class="nav-item" *ngIf="_auth.loggedIn()">
+        <a class="nav-link" [routerLink]="['profile']" routerLinkActive="router-link-active" >profile</a>
+      </div>
+    </div>
+  </div>
+</nav>

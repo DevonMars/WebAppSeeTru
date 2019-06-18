@@ -90,11 +90,11 @@ export class LoginComponent implements OnInit {
   }
 
   validateName() {
-    return this.name.hasError('required') ? 'Voer een naam in' : '';
+    return this.name.hasError('required') ? 'Username is required' : '';
   }
 
   validatePassword() {
-    return this.password.hasError('required') ? 'Voer een wachtwoord in' : '';
+    return this.password.hasError('required') ? 'Password is required' : '';
   }
 
 }
