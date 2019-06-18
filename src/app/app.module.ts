@@ -25,7 +25,6 @@ import { SignService } from './services/sign/sign.service';
 import { UserIndexComponent } from './components/users/user-index/user-index.component';
 import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
 import { ProfileComponent } from './components/users/profile/profile.component';
-import { VideoplayerComponent } from './components/streaming/videoplayer/videoplayer.component';
 import {DashjsPlayerModule} from 'angular-dashjs-player';
 
 const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
@@ -41,8 +40,7 @@ const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', o
     RegisterComponent,
     UserIndexComponent,
     UserDetailComponent,
-    ProfileComponent,
-    VideoplayerComponent
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
