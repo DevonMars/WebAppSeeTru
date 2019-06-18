@@ -1,66 +1,76 @@
-<div class="card main-card bg-dark mt-5" *ngIf="streamer">
-  <div class="card-header">
-    <div class="card-title primary-color text-center">
-      <h1>{{streamer.name}}</h1>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-9">
-        <h4 class="bottom text-white">Kudos : {{streamer.kudos}}</h4>
-      </div>
-      <div class="col-md-3">
-        <img src="{{streamer.profilePicture}}" class="fill picheight">
-      </div>
-    </div>   
-    <hr />
-    <div class="row">
-      <div class="col-md-6 text-center">
-        <div class="card bg-light">
-          <div class="card-header">
-            <h4 class="color-black">
-              Messages sent to {{streamer.name}}:
-            </h4>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-dark" *ngIf="streamer">
+        <div class="card-header">
+          <h1>{{streamer.name}}</h1>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 my-auto">
+              <h4 class="text-white">Kudos: {{streamer.kudos}}</h4>
+              <h4 class="text-white">Total streaming time: {{streamer.totalStreamTime}} hours</h4>
+            </div>
+            <div class="col-md-8 my-auto text-right">
+              <img src="{{streamer.profilePicture}}" alt="profilePicture" class="profilePic">
+            </div>
           </div>
-          <div class="card-body">
-            <div class="scrollfield pr-2">
-              <div *ngFor="let message of messages">
-                <div class="row">
-                  <div class="col-md-8">                  
-                      <p>{{message.message}}</p>                    
-                  </div>
-                  <div class="col-md-4">
-                      <p>{{message.createdAt}}</p>
+          <br>
+          <div class="row">
+            <div class="col-md-4 infosep">
+              <div class="row">
+                <h4 class="infotext mx-auto">Messages sent to {{streamer.name}}:</h4>
+              </div>
+              <div class="row">
+                <div class="scrollfield">
+                  <div *ngFor="let message of messages">
+                    <div class="col-md-12">
+                      <p>{{message.message}}</p>
+                    </div>
+                    <div class="col-md-12">
+                      <p><span id="datetime">{{message.createdAt | date : "dd/MM 'at' h:mma"}}</span></p>
+                    </div>
+                    <hr class="endline">
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 text-center">
-        <div class="card bg-light">
-          <div class="card-header">
-            <h4 class="color-black">
-              {{streamer.name}}'s activities:
-            </h4>
-          </div>
-          <div class="card-body">
-            <div class="scrollfield pr-2">
-              <div *ngFor="let activity of activities">
-                <div class="row">
-                  <div class="col-md-8">
-                    <p>{{activity.activity}}</p>
+            <div class="col-md-4 infosep">
+              <div class="row">
+                <h4 class="infotext mx-auto">{{streamer.name}}'s activities:</h4>
+              </div>
+              <div class="row">
+                <div class="scrollfield">
+                  <div *ngFor="let activity of activities">
+                    <div class="col-md-12">
+                      <p>{{activity.activity}}</p>
+                    </div>
+                    <div class="col-md-12">
+                        {{activity.createdAt | date : "dd/MM 'at' h:mma" }}
+                    </div>
+                    <hr class="endline">
                   </div>
-                  <div class="col-md-4">
-                    <p>{{activity.createdAt}}</p>
                   </div>
                 </div>
               </div>
+            <div class="col-md-4">
+              <div class="row infosep">
+                    <form>
+                        <div class="form-group">
+                          <select class="form-control" id="sel1" (change)="selectedCategory($event.target.value)">
+                            <option>No filter</option>
+                            <option>Ended stream</option>
+                            <option>Created stream</option>
+                            <option>Posted message</option>
+                            <option>Started watching</option>
+                          </select>
+                        </div>
+                      </form>
+              </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
