@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Stream } from '../../models/stream';
+import { Stream } from '../../../models/stream';
 import { StreamService } from 'src/app/services/stream/stream.service';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/message/message.service';
 import { Message } from 'src/app/models/message';
 import { StreamComponent } from '../stream/stream.component'
 import { SignService } from 'src/app/services/sign/sign.service';
+//import { StreamComponent } from 'src/app/components/streaming/stream/stream.component'
 
 declare var $: any;
 
@@ -27,7 +28,8 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   constructor(
     private _streamService: StreamService,
     private msgService: MessageService,
-    private _sign: SignService
+    private _sign: SignService,
+    private _streamComponent : StreamComponent
   ) { }
 
   ngOnInit() {
@@ -62,7 +64,6 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   }
 
   sendMessage() {
-    this.disableButton = true;
     this.message.message = this.messagetxt;
     this.message.authorname = localStorage.getItem('username');
     this.message.author = localStorage.getItem('userId');
@@ -81,6 +82,6 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   }
 
   autoScroll() {
-    $(".scrollfield.chatbox").stop().animate({ scrollTop: $(".scrollfield.chatbox")[0].scrollHeight}, 1000);
-    }
+  // $(".scrollfield.chatbox").stop().animate({ scrollTop: $(".scrollfield.chatbox")[0].scrollHeight}, 1000);
   }
+}
