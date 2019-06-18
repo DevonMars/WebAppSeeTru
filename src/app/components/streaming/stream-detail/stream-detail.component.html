@@ -10,16 +10,10 @@
 
   </div>
   <div class="card-body">
-    <video id="videoPlayer" controls muted="muted" autoplay class="img-fluid">
-      <source src="http://thecirclebackend.herokuapp.com/api/video" type="video/mp4">
-    </video>
-    <!-- <iframe
-    src="https://player.twitch.tv/?channel=bobross&muted=true"
-class="img-fluid"
-    frameborder="0"
-    scrolling="no"
-    allowfullscreen="true">
-</iframe> -->
+    <dashjs-player [src]="'http://167.99.37.249:8000/live/' + stream.host._id + '/index.mpd'"></dashjs-player>
+    <!--<dashjs-player [src]="'http://localhost:8000/live/' + stream.host._id + '/index.mpd'"></dashjs-player>-->
+    <!--<dashjs-player [src]="'http://localhost:8000/live/' + stream.title + '/index.mpd'"></dashjs-player>-->
+
     <div class="float-left text-white">Currently watching: {{viewers}}</div>
     <div class="scrollfield bg-light mt-1 bordered" id="scrollbox-inner">
       <div *ngFor="let message of messages" (change)="scrollDown()">
