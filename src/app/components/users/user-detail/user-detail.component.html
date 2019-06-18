@@ -41,30 +41,32 @@
               <div class="row">
                 <div class="scrollfield">
                   <div *ngFor="let activity of activities">
-                    <div class="col-md-12">
-                      <p>{{activity.activity}}</p>
-                    </div>
-                    <div class="col-md-12">
-                      <p>{{activity.createdAt}}</p>
+                    <div *ngIf="activityCategory(activity)">
+                      <div class="col-md-12">
+                        <p>{{activity.activity}}</p>
+                      </div>
+                      <div class="col-md-12">
+                        <p>{{activity.createdAt}}</p>
                     </div>
                     <hr class="endline">
+                  </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
               <div class="row infosep">
-                  <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose an activity category:
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" (click)="selectedCategory()">
-                        <a class="dropdown-item">EndStream</a>
-                        <a class="dropdown-item">CreateStream</a>
-                        <a class="dropdown-item">PostMessage</a>
-                        <a class="dropdown-item">StartWatching</a>
-                      </div>
-                    </div>
+                    <form>
+                        <div class="form-group">
+                          <select class="form-control" id="sel1" (change)="selectedCategory($event.target.value)">
+                            <option>No filter</option>
+                            <option>Ended stream</option>
+                            <option>Created stream</option>
+                            <option>Posted message</option>
+                            <option>Started watching</option>
+                          </select>
+                        </div>
+                      </form>
               </div>
             </div>
           </div>
