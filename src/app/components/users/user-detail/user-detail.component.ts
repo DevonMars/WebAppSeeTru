@@ -32,4 +32,7 @@ export class UserDetailComponent implements OnInit {
     )
   }
 
+  selectedCategory(){
+
+  }
 }
