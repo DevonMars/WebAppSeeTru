@@ -44,9 +44,4 @@ export class UserDetailComponent implements OnInit {
       else return false;
     }
   }
-
-  converter(input){
-    var ts = input;
-    ts.toLocaleString();
-  }
 }
