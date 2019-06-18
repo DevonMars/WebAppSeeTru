@@ -17,7 +17,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   @Input() stream: Stream;
   messages = [];
   viewers: Number;
-  message: Message = { authorname: '', author: '', message: '', signature: '', certificate: this._sign.certificate};
+  message: Message = { authorname: '', author: '', message: '', signature: '', certificate: this._sign.certificate };
   messagetxt: String;
   private _msgSub: Subscription;
   private _viewSub: Subscription;

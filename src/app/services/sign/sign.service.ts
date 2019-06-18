@@ -1,16 +1,34 @@
 import { Injectable } from '@angular/core';
-import { md, pki, util, asn1 } from 'node-forge';
+import { md, pki, util, asn1, cipher } from 'node-forge';
 import { AuthService } from '../auth/auth.service';
+import {from, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignService {
   private _public_key;
+  private _public_key_key;
+  private _public_key_iv;
   private _private_key;
+  private _private_key_key;
+  private _private_key_iv;
   private _certificate;
+  private _certificate_key;
+  private _certificate_iv;
+  private _client_private_key;
+  private _client_public_key;
 
   constructor() { }
+
+  generateKey(): Observable<any> {
+    const keyPair = new Observable(observer => {
+      observer.next(pki.rsa.generateKeyPair({bits: 2048}));
+    });
+    return keyPair;
+  }
+
+  
 
   signMessage(msg) {
     const messageDigest = md.sha256.create();
@@ -30,6 +48,23 @@ export class SignService {
       sigHex: sigHexed,
     });
     return { signature, messageDigest, msg, encodeSig, sigHexed };
+  }
+
+  decryptCredential(cred) {
+    const keyHex = cred.substring(0, 32);
+    const ivHex = cred.substring(32, 64);
+    const encHex = cred.substring(64, cred.length);
+
+    const keyBytes = util.hexToBytes(keyHex);
+    const ivBytes = util.hexToBytes(ivHex);
+    const encBytes = util.hexToBytes(encHex);
+
+    const decipher = cipher.createDecipher('AES-CBC', keyBytes);
+    decipher.start({ iv: ivBytes });
+    decipher.update(util.createBuffer(encBytes));
+    console.log(decipher.finish());
+    const deciphered = decipher.output;
+    return deciphered;
   }
 
   verifySignature(obj) {
@@ -65,12 +100,27 @@ export class SignService {
   }
 
   get certificate() {
-    const certPem = pki.certificateToPem(this._certificate);
-    return certPem;
+    return this._certificate;
   }
 
   set certificate(value) {
     this._certificate = pki.certificateFromPem(value);
+  }
+
+  get client_public_key() {
+    return this._client_public_key;
+  }
+
+  set client_public_key(value) {
+    this._client_public_key = value;
+  }
+
+  get client_private_key() {
+    return this._client_private_key;
+  }
+
+  set client_private_key(value) {
+    this._client_private_key = value;
   }
 
 }
