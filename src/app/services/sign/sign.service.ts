@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { md, pki, util, asn1, cipher } from 'node-forge';
 import { AuthService } from '../auth/auth.service';
 import {from, Observable} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +30,6 @@ export class SignService {
     return keyPair;
   }
 
-  
-
   signMessage(msg) {
     const messageDigest = md.sha256.create();
     messageDigest.update(msg);
@@ -50,21 +50,32 @@ export class SignService {
     return { signature, messageDigest, msg, encodeSig, sigHexed };
   }
 
-  decryptCredential(cred) {
-    const keyHex = cred.substring(0, 32);
-    const ivHex = cred.substring(32, 64);
-    const encHex = cred.substring(64, cred.length);
+  // decryptCredential(cred) {
+  //   const keyHex = cred.substring(0, 32);
+  //   const ivHex = cred.substring(32, 64);
+  //   const encHex = cred.substring(64, cred.length);
 
-    const keyBytes = util.hexToBytes(keyHex);
-    const ivBytes = util.hexToBytes(ivHex);
-    const encBytes = util.hexToBytes(encHex);
+  //   const keyBytes = util.hexToBytes(keyHex);
+  //   const ivBytes = util.hexToBytes(ivHex);
+  //   const encBytes = util.hexToBytes(encHex);
 
-    const decipher = cipher.createDecipher('AES-CBC', keyBytes);
-    decipher.start({ iv: ivBytes });
-    decipher.update(util.createBuffer(encBytes));
-    console.log(decipher.finish());
-    const deciphered = decipher.output;
-    return deciphered;
+  //   const decipher = cipher.createDecipher('AES-CBC', keyBytes);
+  //   decipher.start({ iv: ivBytes });
+  //   decipher.update(util.createBuffer(encBytes));
+  //   console.log(decipher.finish());
+  //   const deciphered = decipher.output;
+  //   return deciphered;
+  // }
+
+  decryptPrivateKey(privateKey) {
+    let e = privateKey.e;
+    let eRsa = privateKey.eRsa;
+
+    let decryptPassphrase = this.client_private_key.decrypt(e);
+
+    let decryptRsaPrivateKey = pki.decryptRsaPrivateKey(eRsa, decryptPassphrase);
+    this.private_key = pki.privateKeyToPem(decryptRsaPrivateKey);
+    return decryptRsaPrivateKey;
   }
 
   verifySignature(obj) {
@@ -108,7 +119,9 @@ export class SignService {
   }
 
   get client_public_key() {
-    return this._client_public_key;
+    const client_public_key_pem = pki.publicKeyToPem(this._client_public_key);
+    console.log(client_public_key_pem);
+    return client_public_key_pem;
   }
 
   set client_public_key(value) {

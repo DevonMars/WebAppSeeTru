@@ -31,22 +31,21 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    this._auth.loginUser(this.loginUserData.value)
+    const loginRequest = {
+      name: this.loginUserData.value.name,
+      password: this.loginUserData.value.password,
+      public_key: this._sign.client_public_key
+    };
+    this._auth.loginUser(loginRequest)
     .subscribe(
       res => {
-        console.log(res);
-        // this._sign.public_key = res.public;
-        // this._sign.private_key = res.private;
-        // this._sign.certificate = res.cert;
-        let decPub = this._sign.decryptCredential(res.public);
-        let decPriv = this._sign.decryptCredential(res.private);
-        let decCert = this._sign.decryptCredential(res.cert);
+        // console.log(res);
 
-        console.log({
-          pub: decPub,
-          priv: decPriv,
-          cert: decCert
-        });
+        // Set private key
+        this._sign.decryptPrivateKey(res.private);
+        this._sign.public_key = res.public;
+        this._sign.certificate = res.cert;
+
         // const signature = this._sign.signMessage('test');
         // const verification = this._sign.verifySignature(signature);
         // // const encoded = this._sign.encodeToBase64(signature);
