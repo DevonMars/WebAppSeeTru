@@ -39,15 +39,11 @@ export class SignService {
     // });
     const signature = this.private_key.sign(messageDigest);
     const sigHexed = util.bytesToHex(signature);
-    const encodeSig = asn1.derToOid(signature);
-    const decodeSig = asn1.oidToDer(encodeSig);
     console.log({
-      encode: encodeSig,
-      decode: decodeSig,
       sig: signature,
       sigHex: sigHexed,
     });
-    return { signature, messageDigest, msg, encodeSig, sigHexed };
+    return { signature, messageDigest, msg, sigHexed };
   }
 
   // decryptCredential(cred) {
@@ -111,7 +107,8 @@ export class SignService {
   }
 
   get certificate() {
-    return this._certificate;
+    let certificate_pem = pki.certificateToPem(this._certificate);
+    return certificate_pem;
   }
 
   set certificate(value) {
