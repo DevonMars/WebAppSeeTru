@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/users/user.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-user-detail',
@@ -9,10 +11,11 @@ import { UserService } from 'src/app/services/users/user.service';
 })
 export class UserDetailComponent implements OnInit {
 
-  @Input() detailedUser : any
-  streamer : User
-  messages : []
-  activities : []
+  @Input() detailedUser : any;
+  streamer : User;
+  messages : [];
+  activities : [];
+  actCategory: String;
 
   constructor(
     private _userService : UserService
@@ -28,8 +31,19 @@ export class UserDetailComponent implements OnInit {
       },
       err => {
         console.log(err)
-      }
+      } 
     )
   }
 
+  selectedCategory(category: any){
+    this.actCategory = category;
+  }
+
+  activityCategory(act: any) {
+    if (this.actCategory == 'No filter') return true;
+    else {
+      if (act.category == this.actCategory) return true;
+      else return false;
+    }
+  }
 }

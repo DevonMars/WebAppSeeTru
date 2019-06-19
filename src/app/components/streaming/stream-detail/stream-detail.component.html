@@ -7,22 +7,15 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="float-right"><button (click)="removeStream(i)">X</button></div> -->
   </div>
   <div class="card-body">
-    <!-- <img src="http://feelinfilm.com/wp-content/uploads/Episode_Media/the-circle-2017-movie-starring-emma-watson.jpg"
-      class="img-fluid"> -->
-      <video id="videoPlayer" controls muted="muted" autoplay class="img-fluid"> 
-        <source src="http://thecirclebackend.herokuapp.com/api/video" type="video/mp4">
-      </video>
-      <div class="float-left text-white">Currently watching: {{viewers}}</div>
+    <dashjs-player [src]="'http://167.99.37.249:8000/live/' + stream.host._id + '/index.mpd'"></dashjs-player>
+    <div class="float-left text-white">Currently watching: {{viewers}}</div>
     <div class="scrollfield bg-light mt-1 bordered" id="scrollbox-inner">
       <div *ngFor="let message of messages" (change)="scrollDown()">
-      <span class="ml-2"><strong>{{message.authorname}} : </strong> {{message.message}}</span>  
+        <span class="ml-2"><strong>{{message.authorname}} : </strong> {{message.message}}</span>
       </div>
     </div>
-    
   </div>
   <div class="card-footer">
     <div class="row">
@@ -30,7 +23,7 @@
         <input type="text" [(ngModel)]="messagetxt" class="full-width float-left box-height">
       </div>
       <div class="col-md-2">
-        <button class="btn btn-danger float-right" [disabled]="disableButton" (click)="sendMessage()">Send</button>
+        <button class="btn btn-danger float-right redbuttons" [disabled]="disableButton" (click)="sendMessage()">Send</button>
       </div>
     </div>
   </div>
