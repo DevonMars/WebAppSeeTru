@@ -63,11 +63,14 @@ export class LoginComponent implements OnInit {
   }
 
   loginUserDev() {
-    this._auth.loginUser({name: 'qwe', password: 'qwe'})
+    this._auth.loginUser({
+      name: 'qwe',
+      password: 'qwe',public_key: this._sign.client_public_key
+    })
     .subscribe(
       res => {
+        this._sign.decryptPrivateKey(res.private);
         this._sign.public_key = res.public;
-        this._sign.private_key = res.private;
         this._sign.certificate = res.cert;
         localStorage.setItem('token', res.token);
         localStorage.setItem('username', res.username);

@@ -29,7 +29,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
     private _streamService: StreamService,
     private msgService: MessageService,
     private _sign: SignService,
-    private _streamComponent : StreamComponent
+    private _streamComponent: StreamComponent
   ) { }
 
   ngOnInit() {
