@@ -1,23 +1,20 @@
 import { Injectable } from '@angular/core';
-import { md, pki, util, asn1, cipher } from 'node-forge';
-import { AuthService } from '../auth/auth.service';
-import {from, Observable} from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { md, pki, util } from 'node-forge';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignService {
   private _public_key;
-  private _public_key_key;
-  private _public_key_iv;
+  // private _public_key_key;
+  // private _public_key_iv;
   private _private_key;
-  private _private_key_key;
-  private _private_key_iv;
+  // private _private_key_key;
+  // private _private_key_iv;
   private _certificate;
-  private _certificate_key;
-  private _certificate_iv;
+  // private _certificate_key;
+  // private _certificate_iv;
   private _client_private_key;
   private _client_public_key;
 
@@ -33,17 +30,9 @@ export class SignService {
   signMessage(msg) {
     const messageDigest = md.sha256.create();
     messageDigest.update(msg);
-    // console.log({
-    //   message: msg,
-    //   hash: messageDigest.digest().toHex()
-    // });
     const signature = this.private_key.sign(messageDigest);
-    const sigHexed = util.bytesToHex(signature);
-    console.log({
-      sig: signature,
-      sigHex: sigHexed,
-    });
-    return { signature, messageDigest, msg, sigHexed };
+    const signatureHex = util.bytesToHex(signature);
+    return signatureHex;
   }
 
   // decryptCredential(cred) {
@@ -64,30 +53,12 @@ export class SignService {
   // }
 
   decryptPrivateKey(privateKey) {
-    let e = privateKey.e;
-    let eRsa = privateKey.eRsa;
-
-    let decryptPassphrase = this.client_private_key.decrypt(e);
-
-    let decryptRsaPrivateKey = pki.decryptRsaPrivateKey(eRsa, decryptPassphrase);
+    const e = privateKey.e;
+    const eRsa = privateKey.eRsa;
+    const decryptPassphrase = this.client_private_key.decrypt(e);
+    const decryptRsaPrivateKey = pki.decryptRsaPrivateKey(eRsa, decryptPassphrase);
     this.private_key = pki.privateKeyToPem(decryptRsaPrivateKey);
     return decryptRsaPrivateKey;
-  }
-
-  verifySignature(obj) {
-    const verified = this._certificate.publicKey.verify(obj.messageDigest.digest().bytes(), obj.signature);
-    // console.log({
-    //   sig: obj.signature,
-    //   msghash: obj.messageDigest.digest().toHex(),
-    //   msg: obj.msg,
-    //   verified: verified,
-    //   pub: this.public_key,
-    //   certPub: this.certificate.publicKey
-    // });
-    // console.log({
-    //   verified: verified
-    // });
-    return verified;
   }
 
   get public_key() {
@@ -107,7 +78,7 @@ export class SignService {
   }
 
   get certificate() {
-    let certificate_pem = pki.certificateToPem(this._certificate);
+    const certificate_pem = pki.certificateToPem(this._certificate);
     return certificate_pem;
   }
 
@@ -117,7 +88,6 @@ export class SignService {
 
   get client_public_key() {
     const client_public_key_pem = pki.publicKeyToPem(this._client_public_key);
-    console.log(client_public_key_pem);
     return client_public_key_pem;
   }
 
