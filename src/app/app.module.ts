@@ -58,7 +58,8 @@ const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', o
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    NgxAutoScrollModule
+    NgxAutoScrollModule,
+    DashjsPlayerModule
   ],
   providers: [StreamService, MessageService, AuthGuard],
   bootstrap: [AppComponent]
