@@ -31,18 +31,21 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    this._auth.loginUser(this.loginUserData.value)
+    const loginRequest = {
+      name: this.loginUserData.value.name,
+      password: this.loginUserData.value.password,
+      public_key: this._sign.client_public_key
+    };
+    this._auth.loginUser(loginRequest)
     .subscribe(
       res => {
         // console.log(res);
+
+        // Set private key
+        this._sign.decryptPrivateKey(res.private);
         this._sign.public_key = res.public;
-        this._sign.private_key = res.private;
         this._sign.certificate = res.cert;
-        // console.log({
-        //   pub: this._sign.public_key,
-        //   priv: this._sign.private_key,
-        //   cert: this._sign.certificate
-        // });
+
         // const signature = this._sign.signMessage('test');
         // const verification = this._sign.verifySignature(signature);
         // // const encoded = this._sign.encodeToBase64(signature);
@@ -60,11 +63,14 @@ export class LoginComponent implements OnInit {
   }
 
   loginUserDev() {
-    this._auth.loginUser({name: 'qwe', password: 'qwe'})
+    this._auth.loginUser({
+      name: 'qwe',
+      password: 'qwe',public_key: this._sign.client_public_key
+    })
     .subscribe(
       res => {
+        this._sign.decryptPrivateKey(res.private);
         this._sign.public_key = res.public;
-        this._sign.private_key = res.private;
         this._sign.certificate = res.cert;
         localStorage.setItem('token', res.token);
         localStorage.setItem('username', res.username);

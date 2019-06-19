@@ -22,7 +22,7 @@
                 <h4 class="infotext mx-auto">Messages sent to {{streamer.name}}:</h4>
               </div>
               <div class="row">
-                <div class="scrollfield" ngx-auto-scroll lock-y-offset="10">
+                <div class="scrollfield">
                   <div *ngFor="let message of messages">
                     <div class="col-md-12">
                       <p>{{message.message}}</p>
@@ -61,10 +61,11 @@
                         <div class="form-group">
                           <select class="form-control" id="sel1" (change)="selectedCategory($event.target.value)">
                             <option>No filter</option>
-                            <option>Ended stream</option>
                             <option>Created stream</option>
+                            <option>Ended stream</option>
                             <option>Posted message</option>
                             <option>Started watching</option>
+                            <option>Stopped watching</option>
                           </select>
                         </div>
                       </form>
