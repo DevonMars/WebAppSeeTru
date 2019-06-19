@@ -76,6 +76,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
         this.messagetxt = '';
         this.disableButton = false;
         console.log(res);
+        this.getMessages();
       },
       err => console.log(err)
     );
