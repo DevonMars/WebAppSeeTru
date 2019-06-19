@@ -28,8 +28,8 @@ import { ProfileComponent } from './components/users/profile/profile.component';
 import {NgxAutoScrollModule} from "ngx-auto-scroll";
 import {DashjsPlayerModule} from 'angular-dashjs-player';
 
-// const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
-const config: SocketIoConfig = { url: 'localhost:5000', options: {} };
+const config: SocketIoConfig = { url: 'http://thecirclebackend.herokuapp.com', options: {} };
+// const config: SocketIoConfig = { url: 'localhost:5000', options: {} };
 
 @NgModule({
   declarations: [

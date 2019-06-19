@@ -7,12 +7,12 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  // private _registerUrl = environment.serverUrl + '/api/user/register';
-  // private _loginUrl = environment.serverUrl + '/api/user/login';
+  private _registerUrl = environment.serverUrl + '/api/user/register';
+  private _loginUrl = environment.serverUrl + '/api/user/login';
 
-  private _registerUrl = 'http://localhost:5000/api/users/regiser';
-  private _loginUrl = 'http://localhost:5000/api/user/login';
-
+  // private _registerUrl = 'http://localhost:5000/api/users/regiser';
+  // private _loginUrl = 'http://localhost:5000/api/user/login';
+//
   constructor(private http: HttpClient, private _router: Router) { }
 
   registerUser(user) {
