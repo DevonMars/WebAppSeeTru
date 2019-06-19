@@ -22,7 +22,7 @@
                 <h4 class="infotext mx-auto">Messages sent to {{streamer.name}}:</h4>
               </div>
               <div class="row">
-                <div class="scrollfield">
+                <div class="scrollfield" ngx-auto-scroll lock-y-offset="10">
                   <div *ngFor="let message of messages">
                     <div class="col-md-12">
                       <p>{{message.message}}</p>

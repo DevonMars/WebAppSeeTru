@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/users/user.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-user-detail',
@@ -29,7 +31,7 @@ export class UserDetailComponent implements OnInit {
       },
       err => {
         console.log(err)
-      }
+      } 
     )
   }
 
