@@ -15,7 +15,7 @@ export class UserDetailComponent implements OnInit {
   streamer : User;
   messages : [];
   activities : [];
-  actCategory: String;
+  actCategory = 'No filter';
 
   constructor(
     private _userService : UserService

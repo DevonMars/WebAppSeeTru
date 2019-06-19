@@ -38,8 +38,6 @@ export class StreamComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    //this._viewSub.unsubscribe();
-    console.log('NIET VERGETEN UNSUBSCRIBE TE FIXEN IN STREAM.COMPONENT.TS')
     for (let i = 0; i < this.activeStreams.length; i++) {
       this.msgService.stopWatching({ viewer: localStorage.getItem('userId'), host: this.activeStreams[i].host._id, stream: this.activeStreams[i] })
       console.log('stopped watching: ', i)
