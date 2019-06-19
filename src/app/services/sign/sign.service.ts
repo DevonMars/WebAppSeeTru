@@ -35,6 +35,28 @@ export class SignService {
     return signatureHex;
   }
 
+  verifyMessages(messages) {
+    for (let i = 0; i < messages.length; i++) {
+      const crt = messages[i].cert;
+      const circleCrtPem = pki.certificateFromPem(crt);
+      let pub_key: any; // Typecast to any for verify
+      pub_key = circleCrtPem.publicKey;
+      const messageDigest = md.sha256.create();
+      let msg = messages[i].message;
+      // if (msg === 'testa') {
+      //   msg = 'noby boy';
+      // }
+      messageDigest.update(msg);
+      const signatureHex = messages[i].signatureHex;
+      const signatureBytes = util.hexToBytes(signatureHex);
+      const verified = pub_key.verify(messageDigest.digest().bytes(), signatureBytes);
+      console.log({
+        message: msg,
+        verified: verified
+      });
+    }
+  }
+
   // decryptCredential(cred) {
   //   const keyHex = cred.substring(0, 32);
   //   const ivHex = cred.substring(32, 64);

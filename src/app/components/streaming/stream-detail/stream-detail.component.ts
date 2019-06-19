@@ -49,6 +49,7 @@ export class StreamDetailComponent implements OnInit, OnDestroy {
   getMessages() {
     this._streamService.getMessages(this.stream.host._id).subscribe(
       res => {
+        this._sign.verifyMessages(res);
         this.messages = res;
         this.autoScroll();
       }
