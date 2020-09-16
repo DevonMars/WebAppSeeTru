@@ -33,7 +33,7 @@
     "jquery": "^3.4.1",
     "ngx-auto-scroll": "^1.1.0",
     "ngx-socket-io": "^2.1.1",
-    "node-forge": "^0.8.4",
+    "node-forge": "^0.10.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.3",
     "zone.js": "~0.8.26"
